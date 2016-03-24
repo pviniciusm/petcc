@@ -1,0 +1,119 @@
+{% extends 'base/base.html' %}
+
+{% block titlepage %}
+Home Page
+{% endblock %}
+
+{% block cabecalho %}
+    {% include 'home/cabecalho.html' %}
+{% endblock %}
+
+{% block precorpo %}
+	<div class="container text-center" style="padding-top:25px; padding-bottom:25px; color:#333; font-size:32px; font-family: 'Prototype">
+        Notícias
+    </div>
+{% endblock %}
+
+{% block corpo %}
+ <div class="container" style="min-height:200px; color:#333;">
+
+	<div class="medium-11 large-10 columns small-centered" style="background-color:#eee; padding-top:20px; padding-bottom:20px; box-shadow:0px 0px 5px #333;">
+
+
+
+
+		<div class="row">
+			<div class="small-12 columns">
+				<div class="row" style="min-height:100px; margin-top:20px; margin-bottom:20px; color:#333;">
+
+					<div class="small-12 columns" >
+						<div class="row" style="font-size:38px;">
+
+							<div class="small-12 columns" style="padding-right:21px; font-family:'hamb">
+								{{ noticia.titulo }}
+								<hr style="border:2px solid #333; margin:0;">
+							</div>
+						</div>
+
+						<div class='row text-justify' >
+							<div class='small-12 large-8 columns news'>
+								<div class="row" style="padding-bottom:20px;">
+									{% if noticia.image and not noticia.vertical %}
+										<div class="small-12 columns">
+											<img src="/media/{{noticia.image}}" alt="" style="max-height:250px;">
+										</div>
+									{% endif %}
+								</div>
+								{% if noticia.image and noticia.vertical %}
+									<img src="/media/{{noticia.image}}" alt="" style="max-height:250px; float:left; padding-right:20px;">
+								{% endif %}
+								{{ noticia.conteudo|safe }}
+							</div>
+
+							<div class="large-4 show-for-large-up columns">
+								<div class="row">
+									<div class="small-11 columns" style="background-color:#333; min-height:100px; float:right">
+										<div class="row not_lat" style="padding:0;">
+											<div class="small-6 columns ativa" id="bt_ultimas_lat" onclick="abre_lat('ultimas_lat');" style="color:#eee; font-family: 'Prototype'; font-size:16px; padding:10px;">
+												Últimas notícias:
+											</div>
+											<div class="small-6 columns" id="bt_populares_lat" onclick="abre_lat('populares_lat');" style="color:#eee; font-family: 'Prototype'; font-size:16px; padding:10px;">
+												Notícias populares:
+											</div>
+										</div>
+										<div class="row">
+											<hr style="padding:0; margin:0; border:2px solid #47a3da;">
+										</div>
+										<div id="populares_lat" style="display:none">
+										{%for pop in newspop%}
+											<a href="{{pop.get_absolute_url}}"><div class="row" style="padding:0 0; margin-bottom:8px; padding-left:5px; margin-top:20px;">
+												<div class="small-2 columns" style="color:#eee; line-height:40px; font-size:22px; font-family:'GoldenAge'">
+													{{forloop.counter}}
+												</div>
+												<div class="small-10 columns" style="color:#eee; font-size:16px;">
+													{{pop.titulo}}<br><font style="font-size:11px;"><img src="/media/img/icons/relogio2.png" height="12" width="12" alt="">
+													{{pop.data|date:"d/M/y"}} <img src="/media/img/icons/person.png" height="15" width="15" alt="">
+													{{pop.usuario.first_name}}</font>
+												</div>
+												<div class="small-10 columns" style="padding-right:0; margin-right:0;">
+													{% if not forloop.last %}<hr style="margin:0; margin-top:10px; border:1px solid #47a3da">{%else%}<br>{%endif%}
+												</div>
+											</div></a>
+										{%endfor%}
+										</div>
+										<div id="ultimas_lat">
+										{%for pop in newsult%}
+											<a href="{{pop.get_absolute_url}}"><div class="row" style="padding:0 0; margin-bottom:8px; padding-left:5px; margin-top:20px;">
+												<div class="small-2 columns prototype" style="color:#eee; line-height:40px; font-size:22px;">
+													{{forloop.counter}}
+												</div>
+												<div class="small-10 columns" style="color:#eee; font-size:16px;">
+													{{pop.titulo}}<br><font style="font-size:11px;"><img src="/media/img/icons/relogio2.png" height="12" width="12" alt="">
+													{{pop.data|date:"d/M/y"}} <img src="/media/img/icons/person.png" height="15" width="15" alt="">
+													{{pop.usuario.first_name}}</font>
+												</div>
+												<div class="small-10 columns" style="padding-right:0; margin-right:0;">
+													{% if not forloop.last %}<hr style="margin:0; margin-top:10px; border:1px solid #47a3da">{%else%}<br>{%endif%}
+												</div>
+											</div></a>
+										{%endfor%}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block rodape %}
+	{% include 'home/rodape.html' %}
+{% endblock %}

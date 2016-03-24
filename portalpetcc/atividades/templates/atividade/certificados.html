@@ -1,0 +1,132 @@
+{% extends 'base/base.html' %}
+{% load atividades_extra %}
+
+{% block titlepage %}
+Certificados
+{% endblock %}
+
+{% block cabecalho %}
+    {% include 'home/cabecalho.html' %}
+{% endblock %}
+
+{% block precorpo %}
+	<div class="container text-center" style="padding-top:25px; padding-bottom:25px; color:#333; font-size:32px; font-family: 'Prototype">
+        Certificados
+    </div>
+{% endblock %}
+
+{% block corpo %}
+
+<div class="container" style="min-height:200px; color:#ccc;">
+    <div class="medium-11 large-10 columns small-centered" style="background-color:#333; padding-top:20px;">
+        <div class="row" id="cert">
+            <div class="row">
+                <div class="small-12 columns text-center" style="color:#ccc; font-size:28px; padding-bottom:20px;">
+                    Pesquisa de certificados
+                </div>
+            </div>
+
+            <form action="" method="POST" id="cert_form">{% csrf_token %}
+                <div style="display:none">
+                    <input type="hidden" name="csrfmiddlewaretoken" id="csrfmiddlewaretoken" value="{{ csrf_token }}">
+                </div>
+                <div class="row">
+                    <div class="small-10 columns small-centered">
+                        <div class="row">
+                            <div class="large-6 columns">
+                                <div class="row collapse">
+                                    <div class="small-3 columns">
+                                        <span class="prefix">Matrícula</span>
+                                    </div>
+                                    <div class="small-9 columns">
+                                        <input type="text" id="matr_aluno" placeholder="Digite a matrícula...">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="large-6 columns">
+                                <div class="row collapse">
+                                    <div class="small-3 columns">
+                                        <span class="prefix">Ano</span>
+                                    </div>
+                                    <div class="small-9 columns">
+                                        <select name="ano" id="cert_ano" onchange="muda_ano(this)">
+                                            <option>Selecione um ano...</option>
+                                            {% for ano in anos%}
+                                            <option value="{{ano.year}}">{{ano.year}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="row collapse">
+                    <div class="small-10 columns small-centered">
+                        <div class="row"><label style="color:#aaa">Escolha o minicurso</label>
+                            <select name="cert_atividade" id="cert_atividade">
+                                <option></option>
+                                {% for atividade in atv %}
+                                    <option data-ano="{{atividade.ano}}" value="{{atividade.id}}">{{atividade.tipo|tipomin}}: {{atividade.nome}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="small-10 columns small-centered">
+                        <div class="row">
+                            <div class="small-10 medium-4 columns small-centered" style="">
+                                <input class="button" type="button" value="Pesquisar" style="width:100%; color:#fff; cursor:pointer;" onclick="buscaCertificados();">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="row">
+                <div class="small-10 columns small-centered">
+                    <hr style="border:2px solid #47a3da;">
+                </div>
+            </div>
+            <div class="row" style="padding-bottom:20px;">
+                <div class="medium-10 columns medium-centered">
+                    <div id="resultado_pesquisa_certificado" style="display:none;">
+                    </div>
+                    <div class="row" id="listagem">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+<div class="container" style="min-height:200px; color:#222;">
+    <div class="medium-11 large-10 columns small-centered" style="background-color:#eee; padding-top:20px;">
+        <div class="row" style="padding-bottom:55px;">
+            <a href="/minicursos" style="color:#ddd;"><div class="medium-6 columns text-center atv">
+                {% include 'atividades/minicursos.html' %}
+            </div></a>
+
+            <a href="" style="color:#ddd;"><div class="medium-6 columns text-center atv">
+                {% include 'atividades/atividades.html' %}
+            </div></a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block rodape %}
+    {% include 'home/rodape.html' %}
+{% endblock %}
+

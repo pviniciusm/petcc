@@ -1,0 +1,54 @@
+{% load atividades_extra %}
+<div class="container demo-2" style="padding-top:20px;padding-bottom:20px; background-image:url('img/hH0upNX.jpg')">
+	<div class="row">
+		<div class="small-10 small-offset-1 large-offset-0 large-9 columns">
+			<div id="slider" class="sl-slider-wrapper" >
+				<div class="sl-slider">
+					{% for noticia in noticias %}
+						<div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
+							<div class='sl-slide-inner' style='background-color:#111; {%if noticia.image %}background-image: url(/media/{{noticia.image}}); background-position:center; {%if noticia.vertical%}background-size:contain;{%else%}background-size:cover;{%endif%} {%else%}background-image:url(/media/img/pet_header.png); background-position:top;{%endif%}  background-repeat:no-repeat;'>
+								<a href='{{ noticia.get_absolute_url }}'>
+									<div class="sl-conteudo">
+										<h2>{{ noticia.titulo }}</h2>
+										<p style="color:#999; padding-left:20px;">{{ noticia.conteudo|striptags|slice:"0:160" }}...</p>
+									</div>
+								</a>
+							</div>
+						</div>
+					{% endfor %}
+				</div><!-- /sl-slider -->
+			</div><!-- /sl-slider-wrapper -->
+
+			<nav id="nav-dots" class="nav-dots">
+				<span class="nav-dot-current"></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</nav>
+		</div>
+		<div class="small-10 small-offset-1 medium-8 end medium-offset-2 large-3 large-offset-0 columns" style="background-color:#333; min-height:100px;" id="proximasAtividades">
+			<div class="row" style="padding:8px;">
+				<div class="small-12 columns text-center" style="color:#eee; font-family: 'Prototype'; font-size:21px;">
+					Próximas atividades:
+				</div>
+			</div>
+			<div class="row">
+				<hr style="padding:0; margin:0; border:2px solid">
+			</div>
+			{% for atividade in atividades %}
+			<a href="" class="prox_atv">
+				<div class="row text-center" style="color:#eee; font-size:16px; padding:12px;">
+					<div class="small-12">
+						<font style="font-family: 'Prototype';">{{atividade.tipo|tipomin}}: {{atividade.nome}}</font><br/>
+						{{atividade.data_inicial|date:"d/m"}} - {{atividade.hora_inicial|date:"H:i"}} - {{atividade.local}}
+					</div>
+				</div>
+			</a>
+			{% endfor %}
+
+
+		</div>
+	</div>
+
+</div>

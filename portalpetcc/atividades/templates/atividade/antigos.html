@@ -1,0 +1,140 @@
+{% extends 'base/base.html' %}
+{% load atividades_extra %}
+
+{% block titlepage %}
+Minicursos Antigos
+{% endblock %}
+
+{% block cabecalho %}
+    {% include 'home/cabecalho.html' %}
+{% endblock %}
+
+{% block precorpo %}
+	<div class="container text-center" style="padding-top:25px; padding-bottom:25px; color:#333; font-size:32px; font-family: 'Prototype">
+        Minicursos antigos
+    </div>
+{% endblock %}
+
+{% block corpo %}
+{% load endless %}
+<div class="container" style="min-height:200px; color:#ccc;">
+	<div class="medium-11 large-10 columns small-centered" style="background-color:#333; padding-top:20px; padding-bottom:80px; border-radius:2px;">
+		<div class="row" id="minicursos_antigod">
+			<div class="small-12 medium-11 medium-centered columns">
+				<div class="row prototype" style="padding:10px; padding-bottom:0; padding-left:0">
+					<div class="small-12 columns">
+						<p style="font-size:36px; margin:0;">Minicursos antigos:</p>
+						<p style="font-size:12px;">Os minicursos antigos são aqueles que foram ministrados em anos passados</p>
+					</div>
+				</div>
+				<div class="row">
+					{% paginate 6 minic_ant %}
+					{% for minicurso in minic_ant %}
+
+					{% if forloop.counter0|divisibleby:'2' %}
+						{% if forloop.first %}
+							<div class="row">
+						{% else %}
+							<div class="row" style="margin-top:26px;">
+						{% endif %}
+					{% endif %}
+						<div class="medium-9 medium-centered large-uncentered large-6 columns">
+							<div class="small-12 columns prototype" style="height:40px; font-size:24px; padding:0; padding-left:10px; margin:0;">
+								{% ifchanged %}
+									{{minicurso.ano}}:
+								{% endifchanged %}
+							</div>
+							<div class="small-12 columns minicurso_antigo" style="padding-bottom:16px;">
+								<div class="row m_titulo">
+									<div class="small-12 columns prototype">
+										{{minicurso.nome}}
+									</div>
+								</div>
+								<div class="row">
+									<hr style="padding:0; margin:0; border:2px solid #47a3da;">
+								</div>
+								<div class="row m_conteudo text-justify">
+									{{minicurso.descricao}}
+								</div>
+								<div class="row">
+									<div class="small-12 columns">
+										<img src="/media/img/icons/calendario.png" height="40" width="40" alt="" style="padding:5px;">
+
+										{{minicurso.data_inicial|date:"F/Y"}}
+
+									</div>
+								</div>
+								<div class="row">
+									<div class="small-5 columns">
+										<img src="/media/img/icons/relogio.png" height="40" width="40" alt="" style="padding:5px;">
+										{{minicurso.hora_inicial|date:"H:i"}} - {{minicurso.hora_final|date:"H:i"}}
+									</div>
+									<div class="small-7 columns">
+										<img src="/media/img/icons/place.png" height="40" width="40" alt="" style="padding:5px;">
+										{{minicurso.local}}
+									</div>
+								</div>
+								{% if minicurso.certificado_disponivel %}
+								<br>
+								<div class="row">
+									<div class="small-12 columns">
+										<img src="/media/img/icons/certificate.png" height="60" width="60" alt="" style="padding:5px;">
+										Os certificados estão disponíveis!!
+									</div>
+								</div>
+								{% endif %}
+
+								{% if minicurso.alerta %}
+								<hr>
+								<div class="row">
+									<div class="small-11 columns text-center small-centered">
+										Lorem ipsum dolor sit amet, consectetur adipisicing elit!!
+									</div>
+								</div>
+								{% endif %}
+
+							</div>
+						</div>
+					{% if not forloop.counter0|divisibleby:'2' %}
+					</div>
+					{% endif %}
+					{% endfor %}
+				</div>
+				<div class="row" style="margin-top:30px;">
+
+						{%show_pages%}
+
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+{% endblock %}
+
+{% block rodape %}
+    {% include 'home/rodape.html' %}
+{% endblock %}
+
+<!--{% if forloop.counter0|divisibleby:'2' %}
+						{%ifchanged minicurso.ano %}
+						<div class="row prototype" style="font-size:24px; padding:10px; padding-bottom:0;">
+							<div class="small-12 columns">
+								{{minicurso.ano}}:
+							</div>
+						</div>
+						{%endifchanged%}
+						<div class="row" style="margin-top:10px;">
+					{%else%}
+						{%ifchanged minicurso.ano%}
+						</div>
+						<div class="row prototype" style="font-size:24px; padding:10px; padding-bottom:0;">
+							<div class="small-12 columns">
+								{{minicurso.ano}}:
+							</div>
+						</div>
+						<div class="row">
+						{%endifchanged%}
+					{% endif %}-->

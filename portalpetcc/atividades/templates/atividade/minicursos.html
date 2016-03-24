@@ -1,0 +1,424 @@
+{% extends 'base/base.html' %}
+{% load atividades_extra %}
+
+{% block titlepage %}
+Minicursos
+{% endblock %}
+
+{% block cabecalho %}
+    {% include 'home/cabecalho.html' %}
+{% endblock %}
+
+{% block precorpo %}
+	<div class="container text-center" style="padding-top:25px; padding-bottom:25px; color:#333; font-size:32px; font-family: 'Prototype">
+        Minicursos
+    </div>
+{% endblock %}
+
+{% block corpo %}
+<div class="container" style="min-height:200px; color:#ccc;">
+	<div class="medium-11 large-10 columns small-centered" style="background-color:#333; padding-top:20px; padding-bottom:30px; border-radius:2px;">
+		<div class="row" id="insc">
+			<div class="small-12 medium-9 columns">
+				<div class="row">
+					<div class="small-12 columns text-center" style="color:#ccc; font-family:'Prototype'; font-size:28px; padding-bottom:20px;">
+						Faça sua inscrição <br>
+						<small>*Caso não possua matrícula, inscreva-se com o email</small>
+					</div>
+				</div>
+				<form action="" method="POST" id="participacao_form">{% csrf_token %}
+					<div style="display:none">
+						<input type="hidden" name="csrfmiddlewaretoken" id="csrfmiddlewaretoken" value="{{ csrf_token }}">
+					</div>
+					<div class="row">
+						<div class="small-11 columns small-centered">
+							<div class="row">
+								<div class="large-6 columns">
+									<div class="row collapse">
+										<div class="small-3 columns">
+											<span class="prefix">Nome</span>
+										</div>
+										<div class="small-9 columns">
+											<input type="text" id="nome" name="nome" placeholder="Digite o nome...">
+										</div>
+									</div>
+								</div>
+								<div class="large-6 columns">
+									<div class="row collapse">
+										<div class="small-3 columns">
+											<span class="prefix">Sobreome</span>
+										</div>
+										<div class="small-9 columns">
+											<input type="text" id="sobrenome" name="sobrenome" placeholder="Digite o sobrenome...">
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="small-11 columns small-centered">
+							<div class="row">
+								<div class="large-12 columns">
+									<div class="row collapse">
+										<div class="small-2 columns">
+											<span class="prefix">Email</span>
+										</div>
+										<div class="small-10 columns">
+											<input type="text" id="email" name="email" placeholder="Digite o email...">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="small-11 columns small-centered">
+							<div class="row">
+
+								<div class="large-6 columns">
+									<div class="row collapse">
+										<div class="small-3 columns">
+											<span class="prefix">Matrícula</span>
+										</div>
+										<div class="small-9 columns">
+											<input type="text" id="matricula" name="matricula" placeholder="Digite a matrícula...">
+										</div>
+									</div>
+								</div>
+								<div class="large-6 columns">
+									<div class="row collapse">
+										<div class="small-3 columns">
+											<span class="prefix">Curso</span>
+										</div>
+										<div class="small-9 columns">
+											<select id="curso" name="curso">
+											  <option value="cc">Ciência da Computação</option>
+											  <option value="si">Sistemas de Informação</option>
+											  <option value="sint">Sistemas para Internet</option>
+											  <option value="rc">Redes de Computadores</option>
+											  <option value="ec">Engenharia de Computação</option>
+											  <option value="ou">Outro</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="small-11 columns small-centered">
+							<div class="row">
+								<div class="small-12 columns">
+									<label style="color:#aaa">Escolha o minicurso</label>
+									<select name="minicurso" id="select_minicurso">
+										{% for minicurso in minic %}
+											{% if minicurso.inscricao_aberta %}
+											<option value="{{minicurso.id}}">{{minicurso.nome}}</option>
+											{% endif %}
+										{% endfor %}
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="small-11 medium-6 large-5 columns small-centered">
+							<input class="button" type="button" id="form_part_input" onclick="create_participacao()" value="Realizar Cadastro" style="color:#111; background-color:#009ae1; border-radius:1px; font-family:'Prototype', 'Trebuchet MS'; cursor:pointer;">
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="small-12 medium-3 columns">
+				<div class="row results">
+					<div class="small-8 small-centered medium-12 columns" style="padding-left:15px; padding-right:15px; margin-top:30px; background-color:red; border-radius:1px; display:none;" id="alert_le">
+						<div class="row" style="padding:10px;">
+							<div class="small-12 columns text-center" style="color:#eaeaea; font-size:18px;">
+								Inscrição não realizada!
+							</div>
+						</div>
+						<div class="row">
+							<hr style="padding:0; margin:0; border:2px solid #700;">
+						</div>
+						<div class="row" style="padding:10px 0px;">
+							<div class="small-12 columns text-center" style="color:#eaeaea;">
+								O minicurso está com a lotação esgotada!!
+							</div>
+						</div>
+						<div class="row" style="padding:10px;">
+							<div class="small-12 columns" style="text-align:center">
+								<img src="/media/img/icons/alert.png" height="60" width="60" alt="" >
+							</div>
+						</div>
+					</div>
+					<div class="small-8 small-centered medium-12 columns" style="padding-left:15px; padding-right:15px; margin-top:30px; background-color:red; border-radius:1px; display:none;" id="alert_mi">
+						<div class="row" style="padding:10px;">
+							<div class="small-12 columns text-center" style="color:#eaeaea; font-size:18px;">
+								Inscrição não realizada!
+							</div>
+						</div>
+						<div class="row">
+							<hr style="padding:0; margin:0; border:2px solid #700;">
+						</div>
+						<div class="row" style="padding:10px 0px;">
+							<div class="small-12 columns text-center" style="color:#eaeaea;">
+								O minicurso não está mais disponível para inscrição!!
+							</div>
+						</div>
+						<div class="row" style="padding:10px;">
+							<div class="small-12 columns" style="text-align:center">
+								<img src="/media/img/icons/alert.png" height="60" width="60" alt="" >
+							</div>
+						</div>
+					</div>
+					<div class="small-8 small-centered medium-12 columns" style="padding-left:15px; padding-right:15px; margin-top:30px; background-color:#700; border-radius:1px; display:none;" id="alert_err">
+						<div class="row" style="padding:10px;">
+							<div class="small-12 columns text-center" style="color:#eaeaea; font-size:18px;">
+								Inscrição não realizada!
+							</div>
+						</div>
+						<div class="row">
+							<hr style="padding:0; margin:0; border:2px solid red;">
+						</div>
+						<div class="row" style="padding:10px 0px;">
+							<div class="small-12 columns text-center" style="color:#eaeaea;">
+								Os dados estão mal inseridos. Modifique-os e tente novamente!
+							</div>
+						</div>
+						<div class="row" style="padding:10px;">
+							<div class="small-12 columns" style="text-align:center">
+								<img src="/media/img/icons/alert.png" height="60" width="60" alt="" >
+							</div>
+						</div>
+					</div>
+					<div class="small-8 small-centered medium-12 columns" style="padding-left:15px; padding-right:15px; margin-top:30px; background-color:#3a2; border-radius:1px; display:none;" id="alert_ic">
+						<div class="row" style="padding:10px;">
+							<div class="small-12 columns text-center" style="color:#eaeaea; font-size:18px;">
+								Inscrição realizada!
+							</div>
+						</div>
+						<div class="row">
+							<hr style="padding:0; margin:0; border:2px solid #070;">
+						</div>
+						<div class="row" style="padding:10px 0px;">
+							<div class="small-12 columns text-center" style="color:#eaeaea;">
+								Sua inscrição foi confirmada! Veja as datas, horários e avisos na seção de minicursos abaixo.
+							</div>
+						</div>
+						<div class="row" style="padding:10px;">
+							<div class="small-12 columns" style="text-align:center">
+								<img src="/media/img/icons/success.png" height="60" width="60" alt="" >
+							</div>
+						</div>
+					</div>
+					<div class="small-8 small-centered medium-12 columns" style="padding-left:15px; padding-right:15px; margin-top:30px; background-color:#aaa; border-radius:1px; display:none;" id="alert_ji">
+
+					<div class="row" style="padding:10px;">
+						<div class="small-12 columns text-center" style="color:#444; font-size:18px; padding:0;">
+							Inscrição não realizada!
+						</div>
+
+					</div>
+					<div class="row">
+						<hr style="padding:0; margin:0; border:2px solid #222;">
+					</div>
+					<div class="row" style="padding:10px 0px;">
+						<div class="small-12 columns text-center" style="color:#444;">
+							Você já está inscrito no minicurso!
+						</div>
+					</div>
+					<div class="row" style="padding:10px;">
+						<div class="small-12 columns" style="text-align:center">
+							<img src="/media/img/icons/success2.png" height="60" width="60" alt="" >
+						</div>
+					</div>
+				</div>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+</div>
+
+<div class="container" style="min-height:200px; color:#222;">
+	<div class="medium-11 large-10 columns small-centered" style="background-color:#eee; padding-top:20px; padding-bottom:30px; border-radius:2px;">
+		<div class="row" id="minicursos">
+			<div class="small-12 medium-11 medium-centered columns">
+				<div class="row prototype" style="padding:10px; padding-bottom:20px;">
+					<div class="small-12 columns">
+						<p style="font-size:36px; margin:0;">Minicursos</p>
+					</div>
+				</div>
+				<div class="row">
+					{% for minicurso in minic %}
+						{% if forloop.counter0|divisibleby:'2' %}
+						<div class="row">
+						{% endif %}
+							<div class="medium-6 columns" style="margin-top:10px;">
+								<div class="small-12 columns minicurso" style="padding-bottom:16px;">
+									<div class="row m_titulo">
+										<div class="small-12 columns prototype">
+											{{minicurso.nome}}
+										</div>
+									</div>
+									<div class="row">
+										<hr class="linha bordaAzul" style="padding:0; margin:0;">
+									</div>
+									<div class="row m_conteudo text-justify">
+										{{minicurso.descricao}}
+									</div>
+									<div class="row">
+										<div class="small-12 columns">
+											<img src="/media/img/icons/calendario.png" height="40" width="40" alt="" style="padding:5px;">
+											{% if minicurso.data_definida %}
+												{{minicurso.data_inicial|date:"d/m/Y"}} - {{minicurso.data_final|date:"d/m/Y"}}
+											{% else %}
+												{{minicurso.data_inicial|date:"F/Y"}}
+											{% endif %}
+										</div>
+									</div>
+									<div class="row">
+										<div class="small-5 columns">
+											<img src="/media/img/icons/relogio.png" height="40" width="40" alt="" style="padding:5px;">
+											{{minicurso.hora_inicial|date:"H:i"}} - {{minicurso.hora_final|date:"H:i"}}
+										</div>
+										<div class="small-7 columns">
+											<img src="/media/img/icons/place.png" height="40" width="40" alt="" style="padding:5px;">
+											{{minicurso.local}}
+										</div>
+									</div>
+									{% if minicurso.data_final|minicurso_finalizado %}
+									<br>
+									<div class="row">
+										<div class="small-12 columns">
+											<img src="/media/img/icons/finished.png" height="60" width="60" alt="" style="padding:5px;">
+											Minicurso finalizado!!
+										</div>
+									</div>
+									{% endif %}
+									{% if minicurso.certificado_disponivel %}
+									<br>
+									<div class="row">
+										<div class="small-12 columns">
+											<img src="/media/img/icons/certificate.png" height="60" width="60" alt="" style="padding:5px;">
+											Os certificados estão disponíveis!!
+										</div>
+									</div>
+									{% endif %}
+
+									{% if minicurso.inscricao_aberta %}
+									<br>
+									<div class="row">
+										<div class="small-12 columns">
+											<img src="/media/img/icons/success.png" height="60" width="60" alt="" style="padding:5px;">
+											Inscrições abertas! <a href="#insc" class="hover_black">Faça seu cadastro</a>
+										</div>
+									</div>
+
+									{% endif %}
+									{% if minicurso.aviso %}
+									<hr>
+									<div class="row">
+										<div class="small-11 columns small-centered">
+											Obs: <strong>{{minicurso.aviso}}</strong>
+										</div>
+									</div>
+									{% endif %}
+
+								</div>
+							</div>
+						{% if not forloop.counter0|divisibleby:'2' %}
+						</div>
+						{% endif %}
+
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container" style="min-height:200px; color:#ccc;">
+	<div class="medium-11 large-10 columns small-centered" style="background-color:#333; padding-top:20px; padding-bottom:80px; border-radius:2px;">
+		<div class="row" id="minicursos_antigod">
+			<div class="small-12 medium-11 medium-centered columns">
+				<div class="row prototype" style="padding:10px; padding-bottom:20px;">
+					<div class="small-12 columns">
+						<p style="font-size:36px; margin:0;">Minicursos antigos:</p>
+						<p style="font-size:12px;">Os minicursos antigos são aqueles que foram ministrados em anos passados</p>
+					</div>
+				</div>
+				<div class="row">
+					{% for minicurso in minic_ant %}
+					<div class="medium-6 columns" style="margin-top:10px;">
+							<div class="small-12 columns minicurso_antigo" style="padding-bottom:16px;">
+								<div class="row m_titulo">
+									<div class="small-12 columns prototype">
+										{{minicurso.nome}}
+									</div>
+								</div>
+								<div class="row">
+									<hr class="linha" style="border-color:#47a3da;">
+								</div>
+								<div class="row m_conteudo text-justify">
+									{{minicurso.descricao}}
+								</div>
+								<div class="row">
+									<div class="small-12 columns">
+										<img src="/media/img/icons/calendario.png" height="40" width="40" alt="" style="padding:5px;">
+
+										{{minicurso.data_inicial|date:"F/Y"}}
+
+									</div>
+								</div>
+								<div class="row">
+									<div class="small-5 columns">
+										<img src="/media/img/icons/relogio.png" height="40" width="40" alt="" style="padding:5px;">
+										{{minicurso.hora_inicial|date:"H:i"}} - {{minicurso.hora_final|date:"H:i"}}
+									</div>
+									<div class="small-7 columns">
+										<img src="/media/img/icons/place.png" height="40" width="40" alt="" style="padding:5px;">
+										{{minicurso.local}}
+									</div>
+								</div>
+								{% if minicurso.certificado_disponivel %}
+								<br>
+								<div class="row">
+									<div class="small-12 columns">
+										<img src="/media/img/icons/certificate.png" height="60" width="60" alt="" style="padding:5px;">
+										Os certificados estão disponíveis!!
+									</div>
+								</div>
+								{% endif %}
+
+								{% if minicurso.aviso %}
+								<hr>
+								<div class="row">
+									<div class="small-11 columns text-center small-centered">
+										Lorem ipsum dolor sit amet, consectetur adipisicing elit!!
+									</div>
+								</div>
+								{% endif %}
+
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+				<div class="row" style="margin-top:30px;">
+					<div class="small-12 columns">
+						<a href="/minicursos/antigos"><font class="vejamais">Veja mais minicursos antigos >></font></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block rodape %}
+    {% include 'home/rodape.html' %}
+{% endblock %}

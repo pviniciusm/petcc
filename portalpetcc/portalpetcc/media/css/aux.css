@@ -1,0 +1,391 @@
+.sizenot{
+	height: 70px;
+	padding-left: 10px;
+	padding-top: 5px;
+}
+
+.conttop{
+	background-image: url(/media/img/hH0upNX.jpg);
+	background-repeat: repeat;
+	z-index: 2;
+}
+
+.cabev{
+	background-color: #222;
+	height:130px;
+	border-bottom:1px solid rgba(0,0,0,0.2);
+}
+
+@media only screen and (max-width: 1025px){
+    #proximasAtividades{
+        margin-top:20px;
+    }
+}
+
+@media only screen and (max-width: 780px){
+    .cabev{
+        background-image: url('/media/img/pet_header.png');
+        background-size:contain;
+        background-repeat:no-repeat;
+        background-position:center;
+    }
+
+    #img_logo{
+        display:none;
+    }
+
+    #cab_left{
+        display:none;
+    }
+
+}
+
+.cabev_menu{
+	border-top:1px solid rgba(100,100,100, 0.1);
+}
+
+.lgg{
+	padding-left:7%;
+}
+
+
+
+@media all and (max-width: 768px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (-o-min-device-pixel-ratio: 2/1) and (max-width: 1024px), only screen and (min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min-resolution: 192dpi) and (max-width: 1024px), only screen and (min-resolution: 2dppx) and (max-width: 1024px){
+	.cabev{
+		height:116px;
+		border:0;
+	}
+
+	.cabev_menu{
+		border:0;
+	}
+
+	.lgg{
+		padding-left:0;
+	}
+
+
+}
+
+
+.rowicons .columns{
+	height:35px;
+	background-size:contain; 
+	background-repeat:no-repeat;
+}
+
+.rowicons .columns:hover{
+	margin-top:-5px;
+	-webkit-transition: all 0.1s;
+	-moz-transition: all 0.1s;
+	-ms-transition: all 0.1s;
+	-o-transition: all 0.1s;
+	transition: all 0.1s;
+}
+
+.atv{
+	padding-left:40px; 
+	padding-right:40px; 
+	margin-top:30px;  
+	border-radius:3px;
+	color:#eee; !important
+}
+
+.atv:hover{
+	background-color:rgba(200,200,200,0.05);
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-ms-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+
+}
+
+.atv_title{
+	font-size:26px;
+}
+
+.atv_desc{
+	height:100px;
+}
+
+.atv_back{
+	height:100px; 
+	margin-top:15px;
+	margin-bottom:15px;
+}
+
+.background{
+	background-repeat:no-repeat; 
+	background-size:contain; 
+	background-position:center; 
+}
+
+#integr{
+	height:100%; 
+	width:100%; 
+	border-radius: 10px;
+	position:absolute; 
+	top:0; 
+	left:0;
+}
+
+#integr:hover{
+	background-color:rgba(0,0,0,0.5); 
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-ms-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+}
+
+.minic{
+	color:#ccc;
+}
+
+.minic .content{
+	color:#222;
+}
+
+.title_minic{
+	color:#bbb; 
+	font-size:28px;
+	padding-bottom:5px;
+}
+
+#listagem .row{
+	margin-top:10px;
+	min-height:50px; 
+	background-color:#bbb; 
+	color:#222; 
+	padding-top:12px; 
+	border-radius:3px;
+}
+
+#listagem .row:hover{
+	background-color:#ddd;
+	transition: all 0.5s;
+}
+
+
+#calendar thead tr td, #calendar td{
+	padding:0;
+}
+
+#calendar tr td{
+	text-align:center;
+}
+
+.has-tip{
+	color:red !important;
+}
+
+.calendar_cab td{
+	background-color:#222;
+	color:#fff;
+	border:0;
+	margin:0;
+}
+
+#rodape .row .columns{
+	padding-top:10px; padding-bottom:10px;
+}
+
+#dia_branco{
+	background-color:#1d1d1d;
+}
+
+#dia_comum, #dia_atual{
+	background-color:#222;
+}
+
+#dia_comum:hover, #dia_atual:hover{
+	background-color: #333;
+}
+
+#integrantes .panel{
+	box-shadow: 1px 2px 5px #2a2a2a;
+	border-radius:3px;
+}
+
+#integrantes .image_integrantes{
+	height:60px; width:60px; border-radius:15px; background-size:cover; background-position:center;
+}
+
+div[id^="projeto_"]{
+	display: none;}
+
+#menu_projetos{
+	padding:0;
+	padding-top:10px;
+	background-color: transparent;
+}
+
+#menu_projetos dl dd{
+	padding:5px;
+	background-color:#222;
+	color:#ddd;
+	border-radius:3px;
+}
+
+
+.accordion-navigation div[id^="panel"] div[class^="alert-box"]{
+	padding:10px;
+}
+
+
+.prox_atv .row:hover{
+    background-color:#5a5a5a;
+}
+
+.not_info{
+    font-size:11px;
+    padding-left:15px;
+    margin-top:-5px;
+    margin-bottom:5px;
+}
+
+.noticia{
+    color:#333 !important;
+    padding-bottom:30px;
+}
+
+.noticia:hover{
+    background-color:#dfdfdf
+}
+
+.endless_page_current, .endless_page_link{
+    padding:8px;
+    border:1px solid #555;
+    border-radius:3px;
+    background-color:#333;
+    color:#eee;
+    margin-right:2px;
+}
+
+.endless_page_current{
+    background-color:#aaa;
+    color:#333;
+    padding-right:5px;
+}
+
+.endless_page_link:hover{
+    background-color:#444;
+}
+
+.minicurso{
+    background-color:#333;
+    color:#eee;
+}
+
+.minicurso_antigo{
+    background-color: #eee;
+    color:#333;
+}
+
+.m_titulo, .m_conteudo{
+    padding:15px;
+}
+
+.m_titulo{
+    font-size:24px;
+}
+
+.hover_black{
+    color:#aaa;
+}
+
+.hover_black:hover{
+    color:#555;
+}
+
+.vejamais:hover{
+    background-color:#777;
+}
+
+.vejamais{
+    background-color:#eee; padding:20px; font-size:18px; font-family:'Prototype', 'Trebuchet MS'; color:#333;
+}
+
+.vejamaisblack:hover{
+    background-color:#151;
+}
+
+.vejamaisblack{
+    background-color:#63aa27; padding:20px; font-size:18px; font-family:'Prototype', 'Trebuchet MS'; color:#eee;
+}
+
+.close_button:hover{
+    background-color:#aaa !important;
+
+}
+
+#form_part_input:hover{
+    background-color:#111 !important;
+    color:#aaa !important;
+}
+
+.indice_pop{
+    font-size:26px;
+    color:blue;
+    text-align:center;
+    padding-top:20px;
+    margin:0;
+}
+
+.pop{
+    color:#eee;
+    padding:0;
+    margin:0;
+}
+
+.not_lat{
+    background-color:#333;
+    cursor:pointer;
+}
+
+#bt_ultimas_lat:hover, #bt_populares_lat:hover{
+    background-color: #2783ba;
+}
+
+.ativa:hover{
+    background-color: #47a3da !important;
+}
+
+.not_lat .ativa{
+    background-color: #47a3da;
+    color:#222 !important;
+}
+
+#cert_atividade option{
+    display:none;
+}
+
+.linha_cert{
+    padding:20px;
+    background-color:#222;
+    margin-top:16px !important;
+}
+
+.text_cert{
+    font-size:18px;
+    font-family:'hamb';
+    line-height:50px;
+}
+
+.link_cert{
+    background-color:#fff;
+    padding:10px;
+    color:#222;
+    transition: all 0.4s;
+}
+
+.link_cert:hover{
+    background-color:#111 !important;
+    color:#fff !important;
+    transition: all 0.4s;
+}
+
+.linha_cert cert_indisp{
+    background-color:#666;
+}

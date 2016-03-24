@@ -1,0 +1,89 @@
+{% extends 'base/base.html' %}
+{% load endless %}
+{% load atividades_extra %}
+
+
+{% block titlepage %}
+Ensino
+{% endblock %}
+
+{% block cabecalho %}
+    {% include 'home/cabecalho.html' %}
+{% endblock %}
+
+{% block precorpo %}
+	<div class="container text-center" style="padding-top:25px; padding-bottom:25px; color:#333; font-size:32px; font-family: 'Prototype">
+        Projetos de ensino
+    </div>
+{% endblock %}
+
+{% block corpo %}
+<div class="container" style="color:#111; padding-bottom:30px;">
+	<div class="medium-11 large-10 columns small-centered" style="background-color:#ddd; box-shadow:0px 0px 5px #333; padding-bottom:60px;">
+		<div class="row" id="ensino" style="padding-top:50px;">
+			<div class="small-12 columns">
+				<div class="row" style="padding-bottom:20px;">
+					<div class="small-12 columns lemon" style="font-size:24px; line-height:50px;">
+                        <img src="/media/img/icons/ensino.png" width="80" alt=""> Ensino:
+                        <p style="font-size:60%; font-family:'Trebuchet MS'; padding-top:10px; color:#333">Neste os integrantes participam e desenvolvem atividades de pesquisas relacionadas as diversas áreas propostas no curso. Em seus vinte e um anos de atuação diversos projetos de pesquisa já foram desenvolvidos no Curso Bacharelado em Ciência da Computação (CBCC) pelos integrantes do grupo, transpassando os mais diversos temas da Ciência da Computação.</p>
+					</div>
+				</div>
+				<div class="row">
+					{% paginate 8 prj %}
+					{% for projeto in prj %}
+
+					{% if forloop.counter0|divisibleby:'2' %}
+						{% if forloop.first %}
+							<div class="row">
+						{% else %}
+							<div class="row" style="margin-top:26px;">
+						{% endif %}
+					{% endif %}
+						<div class="medium-9 medium-centered large-uncentered large-6 columns">
+							<div class="small-12 columns minicurso_antigo" style="padding-bottom:16px;">
+								<div class="row m_titulo">
+									<div class="small-12 columns prototype">
+										[{{projeto.tipo|tipomin}}] {{projeto.nome}}
+									</div>
+								</div>
+								<div class="row">
+									<hr style="padding:0; margin:0; border:2px solid #47a3da;">
+								</div>
+								<div class="row m_conteudo text-justify">
+									{{projeto.descricao}}
+								</div>
+								<div class="row">
+									<div class="medium-6 columns">
+										<img src="/media/img/icons/calendario.png" height="40" width="40" alt="" style="padding:5px;">
+										{{projeto.data_inicial|date:"F/Y"}}
+									</div>
+									<div class="medium-6 columns">
+										<img src="/media/img/icons/place.png" height="40" width="40" alt="" style="padding:5px;">
+										{{projeto.local}}
+									</div>
+								</div>
+							</div>
+						</div>
+					{% if not forloop.counter0|divisibleby:'2' %}
+					</div>
+					{% endif %}
+					{% endfor %}
+				</div>
+				<div class="row" style="margin-top:30px;">
+
+						{%show_pages%}
+
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block rodape %}
+    {% include 'home/rodape.html' %}
+{% endblock %}
+
+
+

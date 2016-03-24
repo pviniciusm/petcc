@@ -1,0 +1,70 @@
+.hiddeObjects{
+	display: none;
+}
+
+.showObjects{
+	display: block;
+}
+
+.op_menu{
+    margin-top:25px;
+}
+
+.op_menu a li{
+    display:inline;
+    padding:10px;
+    margin-left:15px;
+
+    color:#eee;
+    font-family:'Trebuchet MS';
+}
+
+.op_menu a li:hover{
+    border-top:5px solid #63aa27;
+    -webkit-transition: all 0.1s;
+    -moz-transition: all 0.1s;
+    -ms-transition: all 0.1s;
+    -o-transition: all 0.1s;
+    transition: all 0.1s;
+}
+
+.pr_menu a li{
+    display:inline;
+    padding:10px;
+    margin-left:15px;
+
+    color:#222;
+    font-family:'Trebuchet MS';
+}
+
+.pr_menu a li:hover{
+    border-top:5px solid #2980b9;
+    -webkit-transition: all 0.1s;
+    -moz-transition: all 0.1s;
+    -ms-transition: all 0.1s;
+    -o-transition: all 0.1s;
+    transition: all 0.1s;
+}
+
+
+.ops a{
+    color:#eee;
+}
+
+.ops a:hover{
+    color:#aaa;
+}
+
+.linha{
+    padding:0;
+    margin:0;
+    border:2px solid;
+}
+
+.bordaAzul{
+    border-color:#47a3da;
+}
+
+.bordaVerde{
+    border-color:#e67e22;
+}
