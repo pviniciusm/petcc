@@ -24,8 +24,20 @@ tipos={
     'OU': 'Projeto'
 }
 
+tipos_sit = {
+    'B': 'Bolsista',
+    'C': 'Colaborador',
+    'N': 'Nao-bolsista',
+    'T': 'Tutor'
+}
+
 
 @register.filter(name='tipomin')
 def tipomin(value):
     return tipos[value]
+
+
+@register.filter(name='tiposit')
+def tiposit(value):
+    return tipos_sit[value]
 

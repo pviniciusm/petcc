@@ -1,0 +1,33 @@
+#certificado{
+}
+
+#img_pet{
+	float: left;
+}
+
+#img_ufsm{
+	float: right;
+}
+
+#conteudo{
+	height: 250px;
+	float: left;
+	margin-top: 100px;
+	
+}
+
+#conteudo p{
+	float: left;
+	font-size: 1.5em;
+	text-align: justify;
+	margin-left: 16px;
+}
+
+
+#rodape #ass{
+	text-align: center;
+}
+
+#rodape #cargo{
+	text-align: center;
+}

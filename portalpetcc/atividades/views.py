@@ -8,6 +8,8 @@ from datetime import datetime
 from .models import *
 from home.models import User
 from django.db.models import Count
+from reportlab.pdfgen import canvas
+from django.http import HttpResponse
 
 
 # Create your views here.

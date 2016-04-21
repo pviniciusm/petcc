@@ -1,0 +1,215 @@
+body, html {
+	background:#ededed;
+	line-height:20px;
+	font-size:14px;
+	color:#333;
+	font-family: 'Arial', sans-serif;
+	font-weight:normal;  
+	margin-bottom: 120px;
+}
+h1 {        
+	color: #666;
+	font-size: 24px;
+	text-shadow: 0 0 1px rgba(51,51,51,0.3);
+	text-align:center;
+	line-height: 60px;
+}
+h2 {
+	font-size:20px;
+	line-height:36px;
+	text-shadow:0 0 1px rgba(51,51,51,0.2);
+	padding-bottom:5px;
+	margin-bottom:15px;
+	border-bottom:1px solid #ccc;
+}
+h3 {
+	font-family: Ã¬Myriad ProÃ®, Arial, Helvetica, Tahoma, sans-serif;
+	font-size:18px;
+	line-height:26px;
+	font-weight:400;
+	letter-spacing:-1px;
+	font-weight:normal;
+}
+a.link, a:active, a:selected {
+	border:none;
+	outline:none;
+}
+
+.header {
+	width: 480px;
+	height: 90px;
+	margin: 48px auto 0 auto;
+} 
+
+.header a, a:visited{
+	color: #0066FF;
+}
+
+            
+/* set the whole slider's width and height, keep same as defined in the jQuery */
+#banner {
+	width: 960px;		   
+	height: 400px;		  
+	position: relative;
+	left: 50%;    
+	margin-left: -480px;
+	background: #FFFFFF url(../images/assets/fibers.png) repeat;    
+	-webkit-box-shadow: 0 0 32px #666;
+	-moz-box-shadow: 0 0 32px #666;
+	box-shadow: 0 0 32px #666;  	
+	overflow: hidden;	
+	font: "Lucida Grande", "Lucida Sans Unicode", helvetica, verdana, arial, sans-serif;
+}         
+
+.mainSlider {
+	width: 500px;  		 
+	position: relative;          
+	float: left;     
+}   
+
+.mainSlider .sliderItem h3{
+	font-size: 36px;
+	padding: 160px 54px 0 64px;    
+	text-shadow: 0px 2px 4px #999999;	
+	color: #FFF;
+}
+.mainSlider .sliderItem p{
+	font-size: 12px;
+	padding: 12px 54px 0 64px;
+	text-shadow: 0px 2px 4px #999999;		
+	color: #FFF;	
+}
+
+.mainSlider .sliderItem .monitor{  
+	margin: 30px 0 0 80px;
+}  
+
+.mainSlider .sliderItem .fsw{  
+	margin: 40px 0 0 480px;
+}     
+
+/* the Vimeo video player */
+.mainSlider .sliderItem .vimeo{  
+	margin: 40px 0 0 56px;
+	width: 540px;
+	height: 320px;
+	background: #000;
+	
+} 
+
+/* the Youtube video player */
+.mainSlider .sliderItem .youtube{  
+	margin: 40px 0 0 56px;
+	width: 560px;
+	height: 315px;
+	background: #000;
+} 
+
+.subSlider {         
+    
+	position: absolute;
+	float: left;      
+	margin-left: 480px;
+}  
+
+.subSlider .sliderItem{  	
+	height: 480px;   
+	width: 480px;
+	position: absolute;  
+}  
+
+.subSlider .sliderItem .subImage{  	
+	margin: 48px 24px 0 20px;
+}  
+
+.subSlider .sliderItem p{   
+	font-size: 28px;
+	color: #FFF;
+	margin: 180px 12px 0 80px;  
+	text-shadow: 0px 2px 4px #999999;		
+}    
+
+
+.subSlider .sliderItem h3{  
+	font-size: 32px;
+	color: #FFF;       
+	text-shadow: 0px 2px 4px #999999; 
+	clear: left;
+	float: left;
+	padding: 12px;    
+	-moz-border-radius: 8px;
+	border-radius: 8px;	 
+	-moz-box-shadow: 2px 2px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 2px 2px rgba(0,0,0,0.5);
+	box-shadow: 2px 2px rgba(0,0,0,0.5);	 		
+}      
+
+.subSlider .sliderItem p{       
+	font: "Lucida Grande", "Lucida Sans Unicode", helvetica, verdana, arial, sans-serif;
+  	font-size: 12px;
+	color: #FFF;
+	text-shadow: 0px 2px 4px #999999; 
+	padding: 6px;     
+	clear: left;
+	float: left;   	
+	-moz-border-radius: 8px;
+	border-radius: 8px;	  
+	-moz-box-shadow: 2px 2px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 2px 2px rgba(0,0,0,0.5);
+	box-shadow: 2px 2px rgba(0,0,0,0.5);  
+}
+
+.subSlider .sliderItem .envatoHeader{  
+  	background: #00BFFF;  
+	margin: 120px 12px 0 80px;  
+}         
+
+.subSlider .sliderItem .envatoText{   
+	margin: 6px 12px 0 80px;  
+	background: #4682B4;
+}                             
+.subSlider .sliderItem .envatoText a{   
+	color: #FFFFFF;
+}                             
+.subSlider .sliderItem .envatoText a:hover{   
+	color: #FFEBCD;
+}                             
+
+.subSlider .sliderItem .vimeoHeader{  
+	background: #00BFFF;	
+	margin: 100px 12px 0 140px;  
+}
+.subSlider .sliderItem .vimeoText{   
+	margin: 6px 12px 0 140px;  
+	background: #00BFFF;	
+}
+
+.subSlider .sliderItem .youtubeHeader{  
+	background: #FF4500;	
+	margin: 120px 12px 0 160px;  
+}
+.subSlider .sliderItem .youtubeText{   
+	margin: 6px 12px 0 160px;  
+	background: #FF4500;	
+}   
+
+.subSlider .sliderItem .lycheeHeader{   
+	margin: 80px 12px 0 -320px;  
+	background: #4682B4;          	
+}  
+
+.subSlider .sliderItem .lycheeText{   
+	margin: 6px 12px 0 -320px;  
+	background: #4682B4;          
+} 
+
+.subSlider .sliderItem .fswHeader{   
+	margin: 120px 12px 0 -400px;  
+	background: #B03060;
+}  
+
+.subSlider .sliderItem .fswText{   
+	margin: 6px 12px 0 -400px;  
+	background: #B03060;                 
+	
+}

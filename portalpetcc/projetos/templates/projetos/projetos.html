@@ -211,134 +211,49 @@ Nome da pagina
                         <p style="font-size:60%; font-family:'Trebuchet MS'; padding-top:10px; color:#333">Neste os integrantes participam e desenvolvem atividades de pesquisas relacionadas as diversas áreas propostas no curso. Em seus vinte e um anos de atuação diversos projetos de pesquisa já foram desenvolvidos no Curso Bacharelado em Ciência da Computação (CBCC) pelos integrantes do grupo, transpassando os mais diversos temas da Ciência da Computação.</p>
 					</div>
 				</div>
-				<div class="row">
-					<div class="medium-6 columns" >
-						<div class="panel" style="padding:15px;">
-							<a><div class="row" onclick="abreCardProjeto('projeto_pesquisa1', this)">
-								<div style="float:left; padding-left:10px;">
-									<img src="img/icons/down.png" height="30" width="30" alt="">
+				{% for pesquisa in pesq %}
+					{% if forloop.counter0|divisibleby:'2' %}
+					<div class="row">
+					{% endif %}
+						<div class="medium-6 columns">
+							<div class="panel" style="padding:15px; padding-top:0; padding-bottom:0">
+								<a>
+									<div class="row" onclick="abreCardProjeto('projeto_pesquisa{{forloop.counter}}', this)" style="padding:15px; background-color:#333; color:#eee">
+										<div style="float:left; padding-left:10px;">
+											<img src="/media/img/icons/down3.png" height="30" width="30" alt="">
+										</div>
+										<div class="small-8 medium-10 columns lemon" style="font-size:18px; line-height:30px;">{{pesquisa.nome}}</div>
+									</div>
+								</a>
+								<div class="row">
+									<hr class="linha" style="border-color:#222;">
 								</div>
-								<div class="small-8 medium-10 columns" >
-									<h4>Pesquisa 1</h4>
-								</div>
+								<div class="row" id="projeto_pesquisa{{forloop.counter}}">
+									<div class="small-12 columns text-justify" style="padding:20px; padding-bottom:0; font-size:14px;">
+										Os minicursos ministrados pelo PET-CC tem como objetivo trazer conhecimentos
 
-							</div></a>
-							<div class="row" id="projeto_pesquisa1">
-								<div class="small-12 columns text-justify" style="font-size:14px;">
-									Os minicursos ministrados pelo PET-CC tem como objetivo trazer conhecimentos
+										relevantes na carreira profissional dos estudantes que não são vistos na grade curricular.
 
-									relevantes na carreira profissional dos estudantes que não são vistos na grade curricular.
+										Portanto, visa o aprendizado tanto dos alunos integrantes do programa PET que precisam
 
-									Portanto, visa o aprendizado tanto dos alunos integrantes do programa PET que precisam
+										buscar sobre o assunto que precisam ministrar quanto dos alunos participantes dos
 
-									buscar sobre o assunto que precisam ministrar quanto dos alunos participantes dos
-
-									minicursos. <br><br>
-								</div>
-								<div class="small-12 columns">
-									<strong>Alguns minicursos: </strong>Programação para Android, Linux, Pyhton.
-								</div>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="medium-6 columns" >
-						<div class="panel" style="padding:15px;">
-							<a><div class="row" onclick="abreCardProjeto('projeto_pesquisa2', this)">
-								<div style="float:left; padding-left:10px;">
-									<img src="img/icons/down.png" height="30" width="30" alt="">
-								</div>
-								<div class="small-8 medium-10 columns" >
-									<h4>Pesquisa 2</h4>
+										minicursos. <br><br>
+									</div>
 								</div>
 
-							</div></a>
-							<div class="row" id="projeto_pesquisa2">
-								<div class="small-12 columns text-justify" style="font-size:14px;">
-									Os minicursos ministrados pelo PET-CC tem como objetivo trazer conhecimentos
-
-									relevantes na carreira profissional dos estudantes que não são vistos na grade curricular.
-
-									Portanto, visa o aprendizado tanto dos alunos integrantes do programa PET que precisam
-
-									buscar sobre o assunto que precisam ministrar quanto dos alunos participantes dos
-
-									minicursos. <br><br>
-								</div>
-								<div class="small-12 columns">
-									<strong>Alguns minicursos: </strong>Programação para Android, Linux, Pyhton.
-								</div>
 							</div>
 						</div>
+					{% if not forloop.counter0|divisibleby:'2' %}
 					</div>
+					{% elif forloop.last %}
+                    </div>
+					{% endif %}
 
 
-				</div>
-				<div class="row">
-					<div class="medium-6 columns" >
-						<div class="panel" style="padding:15px;">
-							<a><div class="row" onclick="abreCardProjeto('projeto_pesquisa3', this)">
-								<div style="float:left; padding-left:10px;">
-									<img src="img/icons/down.png" height="30" width="30" alt="">
-								</div>
-								<div class="small-8 medium-10 columns" >
-									<h4>Pesquisa 3</h4>
-								</div>
-
-							</div></a>
-							<div class="row" id="projeto_pesquisa3">
-								<div class="small-12 columns text-justify" style="font-size:14px;">
-									Os minicursos ministrados pelo PET-CC tem como objetivo trazer conhecimentos
-
-									relevantes na carreira profissional dos estudantes que não são vistos na grade curricular.
-
-									Portanto, visa o aprendizado tanto dos alunos integrantes do programa PET que precisam
-
-									buscar sobre o assunto que precisam ministrar quanto dos alunos participantes dos
-
-									minicursos. <br><br>
-								</div>
-								<div class="small-12 columns">
-									<strong>Alguns minicursos: </strong>Programação para Android, Linux, Pyhton.
-								</div>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="medium-6 columns" >
-						<div class="panel" style="padding:15px;">
-							<a><div class="row" onclick="abreCardProjeto('projeto_pesquisa4', this)">
-								<div style="float:left; padding-left:10px;">
-									<img src="img/icons/down.png" height="30" width="30" alt="">
-								</div>
-								<div class="small-8 medium-10 columns" >
-									<h4>Pesquisa 4</h4>
-								</div>
-
-							</div></a>
-							<div class="row" id="projeto_pesquisa4">
-								<div class="small-12 columns text-justify" style="font-size:14px;">
-									Os minicursos ministrados pelo PET-CC tem como objetivo trazer conhecimentos
-
-									relevantes na carreira profissional dos estudantes que não são vistos na grade curricular.
-
-									Portanto, visa o aprendizado tanto dos alunos integrantes do programa PET que precisam
-
-									buscar sobre o assunto que precisam ministrar quanto dos alunos participantes dos
-
-									minicursos. <br><br>
-								</div>
-								<div class="small-12 columns">
-									<strong>Alguns minicursos: </strong>Programação para Android, Linux, Pyhton.
-								</div>
-							</div>
-						</div>
-					</div>
+				{% endfor %}
 
 
-				</div>
 			</div>
 		</div>
 		<div class="row" style="margin-top:20px;">
@@ -354,132 +269,38 @@ Nome da pagina
                         <p style="font-size:60%; font-family:'Trebuchet MS'; padding-top:10px; color:#333">Neste os integrantes participam e desenvolvem atividades de pesquisas relacionadas as diversas áreas propostas no curso. Em seus vinte e um anos de atuação diversos projetos de pesquisa já foram desenvolvidos no Curso Bacharelado em Ciência da Computação (CBCC) pelos integrantes do grupo, transpassando os mais diversos temas da Ciência da Computação.</p>
 					</div>
 				</div>
-				<div class="row">
-					<div class="medium-6 columns" >
-						<div class="panel" style="padding:15px;">
-							<a><div class="row" onclick="abreCardProjeto('projeto_extensao1', this)">
-								<div style="float:left; padding-left:10px;">
-									<img src="img/icons/down.png" height="30" width="30" alt="">
+				{% for extensao in ext %}
+					{% if forloop.counter0|divisibleby:'2' %}
+					<div class="row">
+					{% endif %}
+						<div class="medium-6 columns">
+							<div class="panel" style="padding:15px; padding-top:0; padding-bottom:0">
+								<a>
+									<div class="row" onclick="abreCardProjeto('projeto_extensao{{forloop.counter}}', this)" style="padding:15px; background-color:#333; color:#eee">
+										<div style="float:left; padding-left:10px;">
+											<img src="/media/img/icons/down3.png" height="30" width="30" alt="">
+										</div>
+										<div class="small-8 medium-10 columns lemon" style="font-size:18px; line-height:30px;">{{extensao.nome}}</div>
+									</div>
+								</a>
+								<div class="row">
+									<hr class="linha" style="border-color:#222;">
 								</div>
-								<div class="small-8 medium-10 columns" >
-									<h4>Extensao 1</h4>
-								</div>
-
-							</div></a>
-							<div class="row" id="projeto_extensao1">
-								<div class="small-12 columns text-justify" style="font-size:14px;">
-									Os minicursos ministrados pelo PET-CC tem como objetivo trazer conhecimentos
-
-									relevantes na carreira profissional dos estudantes que não são vistos na grade curricular.
-
-									Portanto, visa o aprendizado tanto dos alunos integrantes do programa PET que precisam
-
-									buscar sobre o assunto que precisam ministrar quanto dos alunos participantes dos
-
-									minicursos. <br><br>
-								</div>
-								<div class="small-12 columns">
-									<strong>Alguns minicursos: </strong>Programação para Android, Linux, Pyhton.
-								</div>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="medium-6 columns" >
-						<div class="panel" style="padding:15px;">
-							<a><div class="row" onclick="abreCardProjeto('projeto_extensao2', this)">
-								<div style="float:left; padding-left:10px;">
-									<img src="img/icons/down.png" height="30" width="30" alt="">
-								</div>
-								<div class="small-8 medium-10 columns" >
-									<h4>Extensao 2</h4>
+								<div class="row" id="projeto_extensao{{forloop.counter}}">
+									<div class="small-12 columns text-justify" style="padding:20px; padding-bottom:0; font-size:14px;">
+										{{extensao.descricao}}<br><br>
+									</div>
 								</div>
 
-							</div></a>
-							<div class="row" id="projeto_extensao2">
-								<div class="small-12 columns text-justify" style="font-size:14px;">
-									Os minicursos ministrados pelo PET-CC tem como objetivo trazer conhecimentos
-
-									relevantes na carreira profissional dos estudantes que não são vistos na grade curricular.
-
-									Portanto, visa o aprendizado tanto dos alunos integrantes do programa PET que precisam
-
-									buscar sobre o assunto que precisam ministrar quanto dos alunos participantes dos
-
-									minicursos. <br><br>
-								</div>
-								<div class="small-12 columns">
-									<strong>Alguns minicursos: </strong>Programação para Android, Linux, Pyhton.
-								</div>
 							</div>
 						</div>
+					{% if not forloop.counter0|divisibleby:'2' %}
 					</div>
+					{% elif forloop.last %}
+                    </div>
+					{% endif %}
 
-
-				</div>
-				<div class="row">
-					<div class="medium-6 columns" >
-						<div class="panel" style="padding:15px;">
-							<a><div class="row" onclick="abreCardProjeto('projeto_extensao3', this)">
-								<div style="float:left; padding-left:10px;">
-									<img src="img/icons/down.png" height="30" width="30" alt="">
-								</div>
-								<div class="small-8 medium-10 columns" >
-									<h4>Extensao 3</h4>
-								</div>
-
-							</div></a>
-							<div class="row" id="projeto_extensao3">
-								<div class="small-12 columns text-justify" style="font-size:14px;">
-									Os minicursos ministrados pelo PET-CC tem como objetivo trazer conhecimentos
-
-									relevantes na carreira profissional dos estudantes que não são vistos na grade curricular.
-
-									Portanto, visa o aprendizado tanto dos alunos integrantes do programa PET que precisam
-
-									buscar sobre o assunto que precisam ministrar quanto dos alunos participantes dos
-
-									minicursos. <br><br>
-								</div>
-								<div class="small-12 columns">
-									<strong>Alguns minicursos: </strong>Programação para Android, Linux, Pyhton.
-								</div>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="medium-6 columns" >
-						<div class="panel" style="padding:15px;">
-							<a><div class="row" onclick="abreCardProjeto('projeto_extensao4', this)">
-								<div style="float:left; padding-left:10px;">
-									<img src="img/icons/down.png" height="30" width="30" alt="">
-								</div>
-								<div class="small-8 medium-10 columns" >
-									<h4>Extensao 4</h4>
-								</div>
-
-							</div></a>
-							<div class="row" id="projeto_extensao4">
-								<div class="small-12 columns text-justify" style="font-size:14px;">
-									Os minicursos ministrados pelo PET-CC tem como objetivo trazer conhecimentos
-
-									relevantes na carreira profissional dos estudantes que não são vistos na grade curricular.
-
-									Portanto, visa o aprendizado tanto dos alunos integrantes do programa PET que precisam
-
-									buscar sobre o assunto que precisam ministrar quanto dos alunos participantes dos
-
-									minicursos. <br><br>
-								</div>
-								<div class="small-12 columns">
-									<strong>Alguns minicursos: </strong>Programação para Android, Linux, Pyhton.
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				{% endfor %}
 			</div>
 		</div>
         <div class="row" style="margin-top:20px;">

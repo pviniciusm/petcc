@@ -1,10 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from atividades.models import Atividade
 
 
 # Create your views here.
 def projetos(request):
-    return render(request, 'projetos/projetos.html', {})
+    pesq = Atividade.objects.filter(tipo='PESQ')[:4]
+    ext = Atividade.objects.filter(tipo='EX')[:4]
+    return render(request, 'projetos/projetos.html', {'pesq': pesq, 'ext': ext})
 
 
 def ensino(request):
@@ -20,5 +22,10 @@ def pesquisa(request):
 
 
 def extensao(request):
-    Atividade.objects.filter(tipo='EX')
-    return render(request, 'projetos/projetos.html', {'prj': prj})
+    prj = Atividade.objects.filter(tipo='EX')
+    return render(request, 'projetos/extensao.html', {'prj': prj})
+
+
+def projeto(request, id):
+    prj = get_object_or_404(Atividade, id=id)
+    return render(request, 'projetos/projeto.html', {'projeto': prj})

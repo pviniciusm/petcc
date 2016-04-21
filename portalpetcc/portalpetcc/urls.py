@@ -17,6 +17,12 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import (handler400, handler403, handler404, handler500)
+
+handler400 = 'portalpetcc.views.h404'
+handler403 = 'portalpetcc.views.h404'
+handler404 = 'portalpetcc.views.h404'
+handler500 = 'portalpetcc.views.h500'
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
@@ -24,6 +30,7 @@ urlpatterns = [
     url(r'^noticia/', include('noticia.urls')),
     url(r'^noticias/', 'noticia.views.ultimasnoticias'),
     url(r'^certificados/$', 'atividades.views.certificados'),
+    url(r'^sobre/$', 'home.views.sobre'),
     url(r'^minicursos/', include('atividades.urls')),
     url(r'^oportunidades/', include('oportunidades.urls')),
     url(r'^projetos/', include('projetos.urls')),

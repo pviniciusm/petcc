@@ -23,9 +23,9 @@ PROJECT_ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = '+bk(1_m-&p89_u&k6@f_k)_crd67+=pcpivka)0t*6b%w-v0z='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 MEDIA_URL = '/media/'
 
@@ -91,6 +91,7 @@ TEMPLATES = [
 ]
 
 TEMPLATE_DIRS = (
+    os.path.join(PROJECT_ROOT_PATH, 'portalpetcc/templates'),
     os.path.join(os.path.dirname(__file__), 'templates'),
     os.path.join(PROJECT_ROOT_PATH, 'home/templates'),
     os.path.join(PROJECT_ROOT_PATH, 'noticia/templates'),

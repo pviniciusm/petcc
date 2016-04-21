@@ -101,6 +101,16 @@
 
 }
 
+.atv_black:hover{
+	background-color:rgba(100,100,100,0.25);
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-ms-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+
+}
+
 .atv_title{
 	font-size:26px;
 }
@@ -388,4 +398,8 @@ div[id^="projeto_"]{
 
 .linha_cert cert_indisp{
     background-color:#666;
+}
+
+.lattes{
+    color:#222 !important;
 }

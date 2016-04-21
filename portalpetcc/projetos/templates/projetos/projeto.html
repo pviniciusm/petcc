@@ -1,0 +1,99 @@
+{% extends 'base/base.html' %}
+{% load endless %}
+{% load atividades_extra %}
+
+
+{% block titlepage %}
+Projeto
+{% endblock %}
+
+{% block cabecalho %}
+    {% include 'home/cabecalho.html' %}
+{% endblock %}
+
+{% block precorpo %}
+	<div class="container text-center" style="padding-top:25px; padding-bottom:25px; color:#333; font-size:32px; font-family: 'Prototype">
+		Projetos
+    </div>
+{% endblock %}
+
+{% block corpo %}
+<div class="container" style="color:#111; padding-bottom:30px;">
+	<div class="medium-11 large-10 columns small-centered minicurso" >
+
+			<div class="row" style=" padding:30px;">
+				<div class="small-12 columns">
+					<div class="small-12 columns minicurso" style="padding-bottom:16px; font-size:18px; font-family:'Trebuchet MS'">
+						<div class="row m_titulo" style="font-size:34px;">
+							<div class="small-12 columns prototype">
+								{{projeto.tipo|tipomin}} - {{projeto.nome}}
+							</div>
+						</div>
+						<div class="row">
+							<hr class="linha bordaAzul">
+						</div>
+						<div class="row m_conteudo text-justify">
+							{{projeto.descricao}}
+						</div>
+
+						<div class="row">
+							<div class="medium-12 columns">
+								<img src="/media/img/icons/calendario.png" height="60" width="60" alt="" style="padding:5px;">
+								{{projeto.data_inicial|date:"F/Y"}}
+							</div>
+						</div>
+						<div class="row">
+							<div class="medium-12 columns">
+								<img src="/media/img/icons/people.png" height="60" width="60" alt="" style="padding:5px;">
+								{{projeto.integrantes}}
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="small-12 columns">
+								{{projeto.aviso}}
+							</div>
+						</div>
+						{% if projeto.data_final|minicurso_finalizado %}
+						<br>
+						<div class="row">
+							<div class="small-12 columns">
+								<img src="/media/img/icons/finished.png" height="60" width="60" alt="" style="padding:5px;">
+								Projeto finalizado!!
+							</div>
+						</div>
+						{% endif %}
+						{% if projeto.certificado_disponivel %}
+						<br>
+						<div class="row">
+							<div class="small-12 columns">
+								<img src="/media/img/icons/certificate.png" height="60" width="60" alt="" style="padding:5px;">
+								Os certificados estão disponíveis!!
+							</div>
+						</div>
+						{% endif %}
+
+						{% if projeto.inscricao_aberta %}
+						<br>
+						<div class="row">
+							<div class="small-12 columns">
+								<img src="/media/img/icons/success.png" height="60" width="60" alt="" style="padding:5px;">
+								Inscrições abertas! <a href="#insc" class="hover_black">Faça seu cadastro</a>
+							</div>
+						</div>
+
+						{% endif %}
+					</div>
+				</div>
+			</div>
+
+	</div>
+</div>
+{% endblock %}
+
+{% block rodape %}
+    {% include 'home/rodape.html' %}
+{% endblock %}
+
+
+

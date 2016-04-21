@@ -1,0 +1,306 @@
+{% extends 'base/base.html' %}
+{% load atividades_extra %}
+
+{% block titlepage %}
+- Sobre
+{% endblock %}
+
+{% block cabecalho %}
+    {% include 'home/cabecalho.html' %}
+{% endblock %}
+
+{% block precorpo %}
+	<div class="container text-center" style="padding-top:25px; padding-bottom:25px; color:#333; font-size:32px; font-family: 'Prototype">
+        Sobre o PET-CC
+    </div>
+{% endblock %}
+
+{% block corpo %}
+
+<div class="container" style="  color:#111 ;  ">
+	<div class="medium-11 large-10 columns small-centered" style="background-color:#eee; padding-bottom:50px;">
+		<div class="row">
+			<div class="xlarge-8 columns" style="padding-top:30px;">
+
+				<div class="row" style="">
+					<div class="large-7 columns">
+						<div class="row text-center" style="font-size:36px;">
+							<div class="medium-6 columns" style="padding-top:40px; font-family:'hamb'">
+								O que é o PET-CC?
+							</div>
+
+							<div class="medium-5 columns" style="margin-right:8%;">
+								<div class="background b11" style="height:120px; width:100%; background-image:url('/media/img/pet_header.png');">
+								</div>
+							</div>
+						</div>
+						<div class="row" style="padding-top:20px;">
+							<div class="small-11 columns text-justify" style="font-family:'Trebuchet MS'">
+								O PET Ciência da Computação é um dos grupos da UFSM do Programa de Ensino Tutorial (PET), promovido pelo MEC. Realizamos atividades em três áreas principais: ensino, pesquisa e extensão. O grupo é composto por 14 alunos e 1 tutor, todos participantes do curso de Ciência da Computação da Universidade Federal de Santa Maria.
+                                <br><br>
+                                O PET-CC localiza-se na sala 340, 3º andar do Centro de Tecnologia da UFSM. Você também pode entrar em contato com a gente pelo email petcc@googlegroups.com.
+							</div>
+						</div>
+					</div>
+
+
+					<div class="large-5 columns">
+						<div class="row text-center" style="height:120px;">
+							<div class="small-12 columns" style="font-size:38px; padding-top:40px; font-family:'hamb'">
+								Objetivos do grupo
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="small-12 columns small-centered text-justify" style="font-family:'Trebuchet MS'; padding-top:0px;">
+								O PET-CC busca aumentar e intensificar as experiências profissionais e acadêmicas de seus integrantes.
+                                <br><br>
+                                E, além disso, promover o desenvolvimento do curso no qual está inserido, através da organização de eventos e cursos que coloquem em prática as diretrizes almejadas pelo próprio PET CC, como crescimento profissional, acadêmico e desenvolvimento do senso crítico.
+
+							</div>
+						</div>
+					</div>
+				</div>
+                <br><hr>
+                <div class="row">
+                    <div class="small-12 columns">
+                        <h3 style="font-family:'Trebuchet MS'; font-size:18px;">O pet realiza atividades de ensino, pesquisa e extensão. Confira um pouco mais sobre cada projeto:</h3>
+                        <br>
+                        <a href="/projetos/ensino"><font style="background-color:#47a3da; padding:20px; font-size:16px; font-family:'Sequel'; color:#222;"><img src="/media/img/icons/ensino.png" height="40" width="40" alt=""> Ensino</font></a>
+                        <a href="/projetos/pesquisa"><font style="background-color:#2ecc71; padding:20px; font-size:16px; font-family:'Sequel'; color:#222;"><img src="/media/img/icons/research.png" height="40" width="40" alt=""> Pesquisa</font></a>
+                        <a href="/projetos/extensao"><font style="background-color:#e67e22; padding:20px; font-size:16px; font-family:'Sequel'; color:#222;"><img src="/media/img/icons/extensao.png" height="40" width="40" alt=""> Extensão</font></a>
+
+                    </div>
+                </div>
+
+			</div>
+
+			
+
+
+		</div>
+	</div>
+</div>
+
+<div class="container" id="integrantes">
+    <div class="medium-11 large-10 columns small-centered" style="background-color:#333; padding-bottom:60px; color:#eee">
+        <div class="row">
+            <div class="xlarge-4 columns" style="padding-top:30px;">
+				<div class="row lemon" style="font-size:30px; margin-bottom:20px;">
+					<div class="small-12 columns">
+						Integrantes:
+					</div>
+				</div>
+
+				<div class="row">
+					{% for usuario in usuarios %}
+					{% if forloop.counter0|divisibleby:'3' %}
+					<div class="row"></div>
+					{% endif %}
+					<div class=" small-10 small-centered medium-uncentered large-4 medium-6 columns ">
+						<div class="panel" style="padding:15px;">
+							<div class="row">
+								<div class="small-12 columns lemon" style="font-size:18px;">
+									{{usuario.first_name}} {{usuario.last_name}}
+								</div>
+							</div>
+							<div class="row">
+								<div class="small-12 columns" style="font-size:11px; font-family:'Trebuchet MS'; margin-left:6px; margin-bottom:5px; margin-top:0; color:#777">
+									{{usuario.email}}
+								</div>
+							</div>
+							<div class="row">
+								<div class="small-5 columns">
+									<img src="/media/{{usuario.imagem}}" alt="" class="img-responsive">
+								</div>
+								<div class="small-7 columns" style="font-family:'Trebuchet MS'">
+									{% if usuario.linkedin %}
+									<div class="row">
+										<div class="small-12 columns">
+											<img src="/media/img/icons/linkedin.png" height="25" width="25" alt=""><a class="lattes" href="{{usuario.lattes}}" target="_blank"> Lattes</a>
+										</div>
+									</div>
+									{%else%}
+									<br>
+									{%endif%}
+									{% if usuario.lattes%}
+									<div class="row">
+										<div class="small-12 columns">
+											<img src="/media/img/icons/lattes.png" height="25" width="25" alt=""><a class="lattes" href="{{usuario.lattes}}" target="_blank"> Lattes</a>
+										</div>
+									</div>
+									{%else%}
+									<br>
+									{%endif%}
+									{%if usuario.facebook%}
+									<div class="row">
+										<div class="small-12 columns">
+											<img src="/media/img/icons/facebook.png" height="25" width="25" alt=""><a class="lattes" href="{{usuario.lattes}}" target="_blank"> Facebook</a>
+										</div>
+									</div>
+									{%else%}
+									<br>
+									{%endif%}
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+					{% if forloop0.counter|divisibleby:'2' and not forloop0.counter == 0%}
+					</div>
+					{% elif forloop.last %}
+					</div>
+					{% endif %}
+					{% endfor %}
+				<div class="row lemon" style="font-size:30px; margin-bottom:20px; margin-top:20px;">
+					<div class="small-12 columns">
+						Tutor:
+					</div>
+				</div>
+				<div class="row">
+					{%if tutor%}
+					{% for usuario in tutor %}
+					{% if forloop.counter0|divisibleby:'3' %}
+					<div class="row"></div>
+					{% endif %}
+					<div class=" small-10 small-centered medium-uncentered large-4 medium-6 columns ">
+						<div class="panel" style="padding:15px;">
+							<div class="row">
+								<div class="small-12 columns lemon" style="font-size:18px;">
+									{{usuario.first_name}} {{usuario.last_name}}
+								</div>
+							</div>
+							<div class="row">
+								<div class="small-12 columns" style="font-size:11px; font-family:'Trebuchet MS'; margin-left:6px; margin-bottom:5px; margin-top:0; color:#777">
+									{{usuario.email}}
+								</div>
+							</div>
+							<div class="row">
+								<div class="small-5 columns">
+									<img src="/media/{{usuario.imagem}}" alt="" class="img-responsive">
+								</div>
+								<div class="small-7 columns" style="font-family:'Trebuchet MS'">
+									{% if usuario.linkedin %}
+									<div class="row">
+										<div class="small-12 columns">
+											<img src="/media/img/icons/linkedin.png" height="25" width="25" alt=""><a class="lattes" href="{{usuario.lattes}}" target="_blank"> Lattes</a>
+										</div>
+									</div>
+									{%else%}
+									<br>
+									{%endif%}
+									{% if usuario.lattes%}
+									<div class="row">
+										<div class="small-12 columns">
+											<img src="/media/img/icons/lattes.png" height="25" width="25" alt=""><a class="lattes" href="{{usuario.lattes}}" target="_blank"> Lattes</a>
+										</div>
+									</div>
+									{%else%}
+									<br>
+									{%endif%}
+									{%if usuario.facebook%}
+									<div class="row">
+										<div class="small-12 columns">
+											<img src="/media/img/icons/facebook.png" height="25" width="25" alt=""><a class="lattes" href="{{usuario.lattes}}" target="_blank"> Facebook</a>
+										</div>
+									</div>
+									{%else%}
+									<br>
+									{%endif%}
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+					{% if forloop0.counter|divisibleby:'2' and not forloop0.counter == 0%}
+					</div>
+					{% elif forloop.last %}
+					</div>
+					{% endif %}
+					{% endfor %}
+					{%else%}
+					</div>
+					{%endif%}
+
+				<div class="row lemon" style="font-size:30px; margin-bottom:20px; margin-top:20px;">
+					<div class="small-12 columns">
+						Colaboradores:
+					</div>
+				</div>
+				<div class="row">
+					{% if colaboradores %}
+					{% for usuario in colaboradores %}
+					{% if forloop.counter0|divisibleby:'3' %}
+					<div class="row"></div>
+					{% endif %}
+					<div class=" small-10 small-centered medium-uncentered large-4 medium-6 columns ">
+						<div class="panel" style="padding:15px;">
+							<div class="row">
+								<div class="small-12 columns lemon" style="font-size:18px;">
+									{{usuario.first_name}} {{usuario.last_name}}
+								</div>
+							</div>
+							<div class="row">
+								<div class="small-12 columns" style="font-size:11px; font-family:'Trebuchet MS'; margin-left:6px; margin-bottom:5px; margin-top:0; color:#777">
+									{{usuario.email}}
+								</div>
+							</div>
+							<div class="row">
+								<div class="small-5 columns">
+									<img src="/media/{{usuario.imagem}}" alt="" class="img-responsive">
+								</div>
+								<div class="small-7 columns" style="font-family:'Trebuchet MS'">
+									{% if usuario.linkedin %}
+									<div class="row">
+										<div class="small-12 columns">
+											<img src="/media/img/icons/linkedin.png" height="25" width="25" alt=""><a class="lattes" href="{{usuario.lattes}}" target="_blank"> Lattes</a>
+										</div>
+									</div>
+									{%else%}
+									<br>
+									{%endif%}
+									{% if usuario.lattes%}
+									<div class="row">
+										<div class="small-12 columns">
+											<img src="/media/img/icons/lattes.png" height="25" width="25" alt=""><a class="lattes" href="{{usuario.lattes}}" target="_blank"> Lattes</a>
+										</div>
+									</div>
+									{%else%}
+									<br>
+									{%endif%}
+									{%if usuario.facebook%}
+									<div class="row">
+										<div class="small-12 columns">
+											<img src="/media/img/icons/facebook.png" height="25" width="25" alt=""><a class="lattes" href="{{usuario.lattes}}" target="_blank"> Facebook</a>
+										</div>
+									</div>
+									{%else%}
+									<br>
+									{%endif%}
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+					{% if forloop0.counter|divisibleby:'2' and not forloop0.counter == 0%}
+					</div>
+					{% elif forloop.last %}
+					</div>
+					{% endif %}
+					{% endfor %}
+					{% else %}
+					</div>
+					{% endif %}
+			</div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block rodape %}
+    {% include 'home/rodape.html' %}
+{% endblock %}

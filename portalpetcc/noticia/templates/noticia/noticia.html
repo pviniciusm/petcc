@@ -67,11 +67,11 @@ Home Page
 										<div id="populares_lat" style="display:none">
 										{%for pop in newspop%}
 											<a href="{{pop.get_absolute_url}}"><div class="row" style="padding:0 0; margin-bottom:8px; padding-left:5px; margin-top:20px;">
-												<div class="small-2 columns" style="color:#eee; line-height:40px; font-size:22px; font-family:'GoldenAge'">
+												<div class="small-2 columns prototype" style="color:#eee; line-height:40px; font-size:22px;">
 													{{forloop.counter}}
 												</div>
-												<div class="small-10 columns" style="color:#eee; font-size:16px;">
-													{{pop.titulo}}<br><font style="font-size:11px;"><img src="/media/img/icons/relogio2.png" height="12" width="12" alt="">
+												<div class="small-10 columns" style="color:#eee; font-size:14px;">
+													{{pop.titulo}}<br><font style="font-size:10px;"><img src="/media/img/icons/relogio2.png" height="12" width="12" alt="">
 													{{pop.data|date:"d/M/y"}} <img src="/media/img/icons/person.png" height="15" width="15" alt="">
 													{{pop.usuario.first_name}}</font>
 												</div>
@@ -87,8 +87,8 @@ Home Page
 												<div class="small-2 columns prototype" style="color:#eee; line-height:40px; font-size:22px;">
 													{{forloop.counter}}
 												</div>
-												<div class="small-10 columns" style="color:#eee; font-size:16px;">
-													{{pop.titulo}}<br><font style="font-size:11px;"><img src="/media/img/icons/relogio2.png" height="12" width="12" alt="">
+												<div class="small-10 columns" style="color:#eee; font-size:14px;">
+													{{pop.titulo}}<br><font style="font-size:10px;"><img src="/media/img/icons/relogio2.png" height="12" width="12" alt="">
 													{{pop.data|date:"d/M/y"}} <img src="/media/img/icons/person.png" height="15" width="15" alt="">
 													{{pop.usuario.first_name}}</font>
 												</div>

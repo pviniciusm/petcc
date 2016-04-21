@@ -41,13 +41,13 @@ Pesquisa
 					{% endif %}
 						<div class="medium-9 medium-centered large-uncentered large-6 columns">
 							<div class="small-12 columns minicurso" style="padding-bottom:16px;">
-								<div class="row m_titulo">
+								<a href="/projetos/{{projeto.id}}" style="color:#eee"><div class="row m_titulo">
 									<div class="small-12 columns prototype">
 										{{projeto.nome}}
 									</div>
-								</div>
+								</div></a>
 								<div class="row">
-									<hr class="linha bordaVerde">
+									<hr class="linha" style="border-color:#27ae60">
 								</div>
 								<div class="row m_conteudo text-justify">
 									{{projeto.descricao}}
@@ -68,6 +68,9 @@ Pesquisa
 						</div>
 					{% if not forloop.counter0|divisibleby:'2' %}
 					</div>
+					{% elif forloop.last %}
+                    </div>
+
 					{% endif %}
 					{% endfor %}
 				</div>
@@ -76,7 +79,7 @@ Pesquisa
 						{%show_pages%}
 
 				</div>
-			</div>
+
 			</div>
 		</div>
 	</div>

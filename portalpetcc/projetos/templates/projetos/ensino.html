@@ -40,12 +40,12 @@ Ensino
 						{% endif %}
 					{% endif %}
 						<div class="medium-9 medium-centered large-uncentered large-6 columns">
-							<div class="small-12 columns minicurso_antigo" style="padding-bottom:16px;">
-								<div class="row m_titulo">
+							<div class="small-12 columns minicurso" style="padding-bottom:16px;">
+								<a href="/projetos/{{projeto.id}}" style="color:#eee"><div class="row m_titulo">
 									<div class="small-12 columns prototype">
 										[{{projeto.tipo|tipomin}}] {{projeto.nome}}
 									</div>
-								</div>
+								</div></a>
 								<div class="row">
 									<hr style="padding:0; margin:0; border:2px solid #47a3da;">
 								</div>
@@ -74,7 +74,7 @@ Ensino
 						{%show_pages%}
 
 				</div>
-			</div>
+
 			</div>
 		</div>
 	</div>

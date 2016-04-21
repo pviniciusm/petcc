@@ -1,5 +1,6 @@
 from django.contrib import admin
 from atividades.models import *
+from django_summernote.admin import SummernoteModelAdmin
 
 
 # Register your models here.
@@ -8,7 +9,7 @@ class ParticipacaoAdmin(admin.ModelAdmin):
     pass
 
 
-class AtividadeAdmin(admin.ModelAdmin):
+class AtividadeAdmin(SummernoteModelAdmin):
     list_display = ('nome', 'tipo', 'ano', 'inscricao_aberta', 'certificado_disponivel')
     pass
 
