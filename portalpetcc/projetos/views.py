@@ -29,3 +29,8 @@ def extensao(request):
 def projeto(request, id):
     prj = get_object_or_404(Atividade, id=id)
     return render(request, 'projetos/projeto.html', {'projeto': prj})
+
+
+def atividades(request, slug):
+    prj = get_object_or_404(Atividade, slug=slug)
+    return render(request, 'projetos/projeto.html', {'projeto': prj})

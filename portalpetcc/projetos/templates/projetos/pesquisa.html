@@ -41,7 +41,7 @@ Pesquisa
 					{% endif %}
 						<div class="medium-9 medium-centered large-uncentered large-6 columns">
 							<div class="small-12 columns minicurso" style="padding-bottom:16px;">
-								<a href="/projetos/{{projeto.id}}" style="color:#eee"><div class="row m_titulo">
+								<a href="/atividades/{{projeto.slug}}" style="color:#eee"><div class="row m_titulo">
 									<div class="small-12 columns prototype">
 										{{projeto.nome}}
 									</div>
@@ -50,7 +50,7 @@ Pesquisa
 									<hr class="linha" style="border-color:#27ae60">
 								</div>
 								<div class="row m_conteudo text-justify">
-									{{projeto.descricao}}
+									{{projeto.descricao|striptags}}
 								</div>
 								<div class="row">
 									<div class="medium-12 columns">

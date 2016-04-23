@@ -18,12 +18,13 @@ Projeto
 {% endblock %}
 
 {% block corpo %}
+
 <div class="container" style="color:#111; padding-bottom:30px;">
-	<div class="medium-11 large-10 columns small-centered minicurso" >
+	<div class="medium-11 large-10 columns small-centered minicurso_antigo" >
 
 			<div class="row" style=" padding:30px;">
 				<div class="small-12 columns">
-					<div class="small-12 columns minicurso" style="padding-bottom:16px; font-size:18px; font-family:'Trebuchet MS'">
+					<div class="small-12 columns minicurso_antigo" style="padding-bottom:16px; font-size:18px; font-family:'Trebuchet MS'">
 						<div class="row m_titulo" style="font-size:34px;">
 							<div class="small-12 columns prototype">
 								{{projeto.tipo|tipomin}} - {{projeto.nome}}
@@ -33,7 +34,7 @@ Projeto
 							<hr class="linha bordaAzul">
 						</div>
 						<div class="row m_conteudo text-justify">
-							{{projeto.descricao}}
+							{{projeto.descricao|safe}}
 						</div>
 
 						<div class="row">
@@ -43,15 +44,31 @@ Projeto
 							</div>
 						</div>
 						<div class="row">
+							{% if minicurso.hora_inicial and minicurso.hora_final %}
+							<div class="small-5 columns">
+								<img src="/media/img/icons/relogio.png" height="60" width="60" alt="" style="padding:5px;">
+								{{minicurso.hora_inicial|date:"H:i"}} - {{minicurso.hora_final|date:"H:i"}}
+							</div>
+							{% endif %}
+							{% if minicurso.local %}
+							<div class="small-7 columns">
+								<img src="/media/img/icons/place.png" height="60" width="60" alt="" style="padding:5px;">
+								{{minicurso.local}}
+							</div>
+							{% endif %}
+						</div>
+						{% if projeto.integrantes %}
+						<div class="row">
 							<div class="medium-12 columns">
 								<img src="/media/img/icons/people.png" height="60" width="60" alt="" style="padding:5px;">
 								{{projeto.integrantes}}
 							</div>
 						</div>
+						{% endif %}
 						<br>
 						<div class="row">
 							<div class="small-12 columns">
-								{{projeto.aviso}}
+								{{projeto.aviso|safe}}
 							</div>
 						</div>
 						{% if projeto.data_final|minicurso_finalizado %}
@@ -78,7 +95,7 @@ Projeto
 						<div class="row">
 							<div class="small-12 columns">
 								<img src="/media/img/icons/success.png" height="60" width="60" alt="" style="padding:5px;">
-								Inscrições abertas! <a href="#insc" class="hover_black">Faça seu cadastro</a>
+								Inscrições abertas! <a href="/minicursos/#insc" class="hover_black">Faça seu cadastro</a>
 							</div>
 						</div>
 

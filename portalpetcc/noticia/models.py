@@ -31,7 +31,7 @@ class Noticia(models.Model):
     def get_absolute_url(self):
         return reverse(
             'noticia.views.noticias',
-            kwargs={'slug':self.slug}
+            kwargs={'slug': self.slug}
         )
 
 

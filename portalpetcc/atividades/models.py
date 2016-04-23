@@ -1,6 +1,9 @@
 from django.db import models
 from datetime import datetime
 from home.models import User, Aluno
+from django.core.urlresolvers import reverse
+from django.db.models import signals
+from django.template.defaultfilters import slugify
 
 
 tipos={
@@ -12,11 +15,14 @@ tipos={
     'EX': 'Extensão',
     'OU': 'Projeto'
 }
+
+
 # Create your models here.
 class Atividade(models.Model):
     nome = models.CharField(max_length=150)
     carga = models.IntegerField()
     local = models.CharField(max_length=150, default="")
+    slug = models.SlugField(max_length=100, blank=True, unique=True)
     data_inicial = models.DateField(
             default=datetime.now,
             blank=False
@@ -41,6 +47,7 @@ class Atividade(models.Model):
     tipo = models.CharField(max_length=50, choices=(('MN', 'Minicurso'), ('PEC', 'PEC'), ('SEM', 'Seminario'),
                                                     ('TA', 'Topico de Apoio'), ('PESQ', 'Pesquisa'),
                                                     ('EX', 'Extensao'), ('OU', 'Outro')), default='OU')
+    organizacao = models.CharField(max_length=100, default="PET - Ciência da Computação", blank=False, null=False)
 
     descricao = models.TextField()
     aviso = models.TextField(default="", blank=True)
@@ -59,6 +66,12 @@ class Atividade(models.Model):
 
     class Meta:
         ordering = ['-data_inicial']
+
+    def get_absolute_url(self):
+        return reverse(
+            'projetos.views.atividades',
+            kwargs={'slug': self.slug}
+        )
 
 
 class Participacao(models.Model):
@@ -93,3 +106,22 @@ class Participacao(models.Model):
 
     def show(self):
         return self.atividade.__str__()
+
+
+def atividade_pre_save(signal, instance, sender, **kwargs):
+    if not instance.slug:
+        string = "%s %s %s" % (tipos[instance.tipo], instance.nome, str(instance.data_inicial.year))
+        slug = slugify(string)
+        novo_slug = slug
+        contador = 0
+
+        while Atividade.objects.filter(
+            slug=novo_slug
+        ).exclude(id=instance.id).count() > 0:
+            contador += 1
+            novo_slug = '%s-%d'%(slug, contador)
+
+        instance.slug = novo_slug
+
+
+signals.pre_save.connect(atividade_pre_save, sender=Atividade)

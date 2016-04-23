@@ -41,7 +41,7 @@ Ensino
 					{% endif %}
 						<div class="medium-9 medium-centered large-uncentered large-6 columns">
 							<div class="small-12 columns minicurso" style="padding-bottom:16px;">
-								<a href="/projetos/{{projeto.id}}" style="color:#eee"><div class="row m_titulo">
+								<a href="/atividades/{{projeto.slug}}" style="color:#eee"><div class="row m_titulo">
 									<div class="small-12 columns prototype">
 										[{{projeto.tipo|tipomin}}] {{projeto.nome}}
 									</div>
@@ -50,7 +50,7 @@ Ensino
 									<hr style="padding:0; margin:0; border:2px solid #47a3da;">
 								</div>
 								<div class="row m_conteudo text-justify">
-									{{projeto.descricao}}
+									{{projeto.descricao|striptags}}
 								</div>
 								<div class="row">
 									<div class="medium-6 columns">
@@ -66,6 +66,8 @@ Ensino
 						</div>
 					{% if not forloop.counter0|divisibleby:'2' %}
 					</div>
+					{% elif forloop.last %}
+                    </div>
 					{% endif %}
 					{% endfor %}
 				</div>

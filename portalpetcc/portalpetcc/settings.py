@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 Django settings for portalpetcc project.
 
@@ -23,7 +24,7 @@ PROJECT_ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = '+bk(1_m-&p89_u&k6@f_k)_crd67+=pcpivka)0t*6b%w-v0z='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost']
 
@@ -69,9 +70,9 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'portalpetcc.urls'
 
 PAGINATION_SETTINGS = {
-    'PAGE_RANGE_DISPLAYED' : 2,
-    'MARGIN_RANGE_DISPLAYED' : 2,
-    'SHOW_FIRST_PAGE_WHEN_INVALID' : True,
+    'PAGE_RANGE_DISPLAYED': 2,
+    'MARGIN_RANGE_DISPLAYED': 2,
+    'SHOW_FIRST_PAGE_WHEN_INVALID': True,
 }
 
 TEMPLATES = [

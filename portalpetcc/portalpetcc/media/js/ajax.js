@@ -66,6 +66,9 @@ function create_participacao(){
                 case 'MI':
                     $('#alert_mi').slideDown(400);
                     break;
+                case 'ERR':
+                    $('#alert_err').slideDown(400);
+                    break;
             }
             console.log("success"); // another sanity check
         },
@@ -148,7 +151,7 @@ function buscaCertificados(){
                 console.log(itemData);
                 var hora = itemData['horas']==1?"hora":"horas";
                 var tipo_atv = ""
-                $('#resultado_pesquisa_certificado').append('<div class="row linha_cert"><div class="small-12 columns"><div class="row"><div class="small-5 columns text_cert">'+ itemData['atividade'] + tipo_atv  +'</div><div class="small-3 columns text_cert">'+itemData['data_inicial']+" - "+itemData['data_final']+'</div><div class="small-2 columns text_cert">'+itemData['horas']+ " " +hora+'</div><div class="small-2 columns" ><a href=""><div class="row"><div class="small-12 columns small-centered text-center link_cert">Certificado <img src="/media/img/icons/doc.jpg" width="20" alt=""></div></div></a></div></div></div></div>');
+                $('#resultado_pesquisa_certificado').append('<div class="row linha_cert"><div class="small-12 columns"><div class="row"><div class="small-5 columns text_cert">'+ itemData['atividade'] + tipo_atv  +'</div><div class="small-3 columns text_cert">'+itemData['data_inicial']+" - "+itemData['data_final']+'</div><div class="small-2 columns text_cert">'+itemData['horas']+ " " +hora+'</div><div class="small-2 columns" ><a href="/certificado/'+itemData['id']+'"><div class="row"><div class="small-12 columns small-centered text-center link_cert">Certificado <img src="/media/img/icons/doc.jpg" width="20" alt=""></div></div></a></div></div></div></div>');
 
 
             });

@@ -24,7 +24,7 @@ Ensino
 			<div class="small-12 columns">
 				<div class="row" style="padding-bottom:20px;">
 					<div class="small-12 columns lemon" style="font-size:24px; line-height:50px;">
-                        <img src="/media/img/icons/ensino.png" width="80" alt=""> Ensino:
+                        <img src="/media/img/icons/ensino.png" width="80" alt=""> Extensão:
                         <p style="font-size:60%; font-family:'Trebuchet MS'; padding-top:10px; color:#333">Neste os integrantes participam e desenvolvem atividades de pesquisas relacionadas as diversas áreas propostas no curso. Em seus vinte e um anos de atuação diversos projetos de pesquisa já foram desenvolvidos no Curso Bacharelado em Ciência da Computação (CBCC) pelos integrantes do grupo, transpassando os mais diversos temas da Ciência da Computação.</p>
 					</div>
 				</div>
@@ -41,7 +41,7 @@ Ensino
 					{% endif %}
 						<div class="medium-9 medium-centered large-uncentered large-6 columns">
 							<div class="small-12 columns minicurso_antigo" style="padding-bottom:16px;">
-								<a href="/projetos/{{projeto.id}}" style="color:#222"><div class="row m_titulo">
+								<a href="/atividades/{{projeto.slug}}" style="color:#222"><div class="row m_titulo">
 									<div class="small-12 columns prototype">
 										[{{projeto.tipo|tipomin}}] {{projeto.nome}}
 									</div>
@@ -50,7 +50,7 @@ Ensino
 									<hr style="padding:0; margin:0; border:2px solid #47a3da;">
 								</div>
 								<div class="row m_conteudo text-justify">
-									{{projeto.descricao}}
+									{{projeto.descricao|striptags}}
 								</div>
 								<div class="row">
 									<div class="medium-6 columns">

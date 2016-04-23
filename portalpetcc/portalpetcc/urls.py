@@ -30,6 +30,8 @@ urlpatterns = [
     url(r'^noticia/', include('noticia.urls')),
     url(r'^noticias/', 'noticia.views.ultimasnoticias'),
     url(r'^certificados/$', 'atividades.views.certificados'),
+    url(r'^certificado/(?P<part_id>\d+)$', 'atividades.views.get_certificado'),
+    url(r'^atividades/(?P<slug>[\w_-]+)$', 'projetos.views.atividades'),
     url(r'^sobre/$', 'home.views.sobre'),
     url(r'^minicursos/', include('atividades.urls')),
     url(r'^oportunidades/', include('oportunidades.urls')),

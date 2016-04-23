@@ -1,14 +1,15 @@
 import json
+from io import StringIO
+from weasyprint import HTML
+from xml.sax.saxutils import escape
 
-from django.core import serializers
+from django.template import Context
+
+from django.template.loader import get_template
 from django.views.decorators.csrf import csrf_protect
-from django.http import HttpResponse
-from django.shortcuts import render
-from datetime import datetime
+from django.shortcuts import render, get_object_or_404
+
 from .models import *
-from home.models import User
-from django.db.models import Count
-from reportlab.pdfgen import canvas
 from django.http import HttpResponse
 
 
@@ -50,7 +51,27 @@ def createparticipacao(request):
     if request.method == 'POST':
         response_data = {}
 
-        matricula = int(request.POST.get('matricula'))
+        if request.POST.get('matricula'):
+            matricula = int(request.POST.get('matricula'))
+        elif not request.POST.get('email'):
+            response_data['result'] = 'ERR'
+            return HttpResponse(
+                json.dumps(response_data),
+                content_type="application/json"
+            )
+        else:
+            matricula = -1
+
+        if request.POST.get('email'):
+            email = request.POST.get('email')
+        elif not request.POST.get('matricula'):
+            response_data['result'] = 'ERR'
+            return HttpResponse(
+                json.dumps(response_data),
+                content_type="application/json"
+            )
+        else:
+            email = ""
         minic = int(request.POST.get('minicurso'))
 
         try:
@@ -64,12 +85,38 @@ def createparticipacao(request):
                 usuario.first_name = request.POST.get('nome')
                 usuario.last_name = request.POST.get('sobrenome')
 
-        except:
-            curso = request.POST.get('curso')
-            usuario = Aluno(matricula=matricula, username=matricula, first_name=request.POST.get('nome'),
-                            last_name=request.POST.get('sobrenome'), email=request.POST.get('email'),
-                            participante=True, curso=cursos[request.POST.get('curso')])
+            if email:
+                usuario.email = email
+
             usuario.save()
+
+        except:
+            try:
+                usuario = Aluno.objects.get(email=email)
+                if not usuario.participante:
+                    usuario.participante = True
+                if not usuario.curso == cursos[request.POST.get('curso')]:
+                    usuario.curso = request.POST.get('curso')
+                if not request.POST.get('nome') == "" and not request.POST.get('sobrenome') == "":
+                    usuario.first_name = request.POST.get('nome')
+                    usuario.last_name = request.POST.get('sobrenome')
+                if matricula != -1:
+                    usuario.matricula = matricula
+
+                usuario.save()
+            except:
+                if matricula != -1:
+                    username = matricula
+                    usuario = Aluno(matricula=matricula, username=username, first_name=request.POST.get('nome'),
+                                    last_name=request.POST.get('sobrenome'), email=request.POST.get('email'),
+                                    participante=True, curso=cursos[request.POST.get('curso')])
+                else:
+                    username = email
+                    usuario = Aluno(username=username, first_name=request.POST.get('nome'),
+                                    last_name=request.POST.get('sobrenome'), email=request.POST.get('email'),
+                                    participante=True, curso=cursos[request.POST.get('curso')])
+
+                usuario.save()
 
         try:
             minicurso = Atividade.objects.get(id=minic, inscricao_aberta=True)
@@ -122,10 +169,14 @@ def buscacertificados(request):
             )
 
         response_data = {}
-        matricula = int(request.POST.get('matricula'))
+
+        matricula = request.POST.get('matricula')
         atividadeid = int(request.POST.get('atividade'))
 
-        usuario = Aluno.objects.defer('first_name', 'matricula', 'id').get(matricula=matricula)
+        try:
+            usuario = Aluno.objects.defer('first_name', 'email', 'id').get(email=matricula)
+        except:
+            usuario = Aluno.objects.defer('first_name', 'matricula', 'id').get(matricula=matricula)
         atividade = Atividade.objects.defer('nome', 'carga', 'local', 'data_inicial', 'data_final', 'aviso').get(id=atividadeid)
         certificado = Participacao.objects.filter(usuario=usuario, atividade=atividade)
 
@@ -139,33 +190,19 @@ def buscacertificados(request):
         js = {}
         for ct in certificado:
             if ct.valido:
-                if ct.horas_validas==0:
-                    carga=atividade.carga
+                if ct.horas_validas == 0:
+                    carga = atividade.carga
                 else:
-                    carga=ct.horas_validas
+                    carga = ct.horas_validas
 
                 if ct.papel:
                     tipo = ct.papel
                 else:
                     tipo = ""
 
-                rp = {'atividade%d'%(ct.id):{'nome':usuario.first_name, 'atividade':atividade.nome, 'tipo':tipo, 'horas':carga, 'data_inicial':'%d/%d/%d'%(atividade.data_inicial.day, atividade.data_inicial.month, atividade.data_inicial.year), 'data_final':'%d/%d/%d'%(atividade.data_final.day, atividade.data_final.month, atividade.data_final.year)}}
+                rp = {'atividade%d'%(ct.id): {'nome':usuario.first_name, 'atividade':atividade.nome, 'tipo':tipo, 'horas':carga, 'data_inicial':'%d/%d/%d'%(atividade.data_inicial.day, atividade.data_inicial.month, atividade.data_inicial.year), 'data_final':'%d/%d/%d'%(atividade.data_final.day, atividade.data_final.month, atividade.data_final.year), 'id': ct.id}}
                 js.update(rp)
 
-        #lista = list(usuario) + list(certificado) + list(atividade)
-        #print (lista)
-
-
-        #atividade = list(atividade)
-        #atividade[0].aviso = "%s/%s" % (meses[str(atividade[0].data_inicial.month)], str(atividade[0].data_inicial.year))
-
-        #nova_lista = list(atividade[0].nome, usuario=usuario.first_name, data=atividade[0].aviso)
-
-        #rp = serializers.serialize('json', lista)
-
-        print(js)
-        #print(response_data)
-        #print(rp)
         return HttpResponse(
             json.dumps(js),
             content_type="application/json"
@@ -178,4 +215,18 @@ def buscacertificados(request):
         )
 
 
+def render_to_pdf(request, template_src, context_dict):
+    template = get_template(template_src)
+    context = Context(context_dict)
+    html = template.render(context)
 
+    try:
+        pdf = HTML(string=html, base_url=request.build_absolute_uri()).write_pdf()
+        return HttpResponse(pdf, content_type='application/pdf')
+    except:
+        return HttpResponse('We had some errors<pre>%s</pre>' % escape(html))
+
+
+def get_certificado(request, part_id):
+    part = get_object_or_404(Participacao, id=part_id)
+    return render_to_pdf(request, 'certificados/template_pdf.html', {'participacao': part})

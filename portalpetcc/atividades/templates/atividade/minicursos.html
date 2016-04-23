@@ -259,7 +259,7 @@ Minicursos
 						{% endif %}
 							<div class="medium-6 columns" style="margin-top:10px;">
 								<div class="small-12 columns minicurso" style="padding-bottom:16px;">
-									<a href="/projetos/{{minicurso.id}}" style="color:#eee"><div class="row m_titulo">
+									<a href="/atividades/{{minicurso.slug}}" style="color:#eee"><div class="row m_titulo">
 										<div class="small-12 columns prototype">
 											{{minicurso.nome}}
 										</div>
@@ -268,7 +268,7 @@ Minicursos
 										<hr class="linha bordaAzul" style="padding:0; margin:0;">
 									</div>
 									<div class="row m_conteudo text-justify">
-										{{minicurso.descricao}}
+										{{minicurso.descricao|striptags}}
 									</div>
 									<div class="row">
 										<div class="small-12 columns">
@@ -318,14 +318,6 @@ Minicursos
 										</div>
 									</div>
 
-									{% endif %}
-									{% if minicurso.aviso %}
-									<hr>
-									<div class="row">
-										<div class="small-11 columns small-centered">
-											Obs: <strong>{{minicurso.aviso}}</strong>
-										</div>
-									</div>
 									{% endif %}
 
 								</div>

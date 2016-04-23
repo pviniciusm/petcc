@@ -37,7 +37,7 @@
 				<hr style="padding:0; margin:0; border:2px solid">
 			</div>
 			{% for atividade in atividades %}
-			<a href="" class="prox_atv">
+			<a href="/atividades/{{atividade.slug}}" class="prox_atv">
 				<div class="row text-center" style="color:#eee; font-size:16px; padding:12px;">
 					<div class="small-12">
 						<font style="font-family: 'Prototype';">{{atividade.tipo|tipomin}}: {{atividade.nome}}</font><br/>
